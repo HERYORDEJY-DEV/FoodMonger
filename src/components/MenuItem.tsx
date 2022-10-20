@@ -3,7 +3,6 @@ import * as RN from 'react-native';
 
 import { RFValue } from 'react-native-responsive-fontsize';
 import { SecondaryColor } from '../modules/colors';
-import { ArrowCircleIcon } from '../svg/ArrowCircleIcon';
 
 export interface MenuItemProps {
   title: string;
@@ -26,7 +25,10 @@ export default class MenuItem extends React.Component<
     return (
       <RN.Pressable style={[styles.container]}>
         <RN.View style={styles.imageWrapper}>
-          <RN.Image style={styles.image} source={this.props.imageSource} />
+          <RN.Image
+            style={styles.image}
+            source={this.props.imageSource}
+          />
         </RN.View>
         <RN.View style={styles.bottomWrapper}>
           <RN.Text style={styles.title}>{this.props.title}</RN.Text>
@@ -62,7 +64,7 @@ const styles = RN.StyleSheet.create({
   },
   title: {
     fontSize: RFValue(16),
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     color: SecondaryColor,
     textTransform: 'capitalize',
   },

@@ -3,16 +3,17 @@ import * as RN from 'react-native';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import Home from '../screens/Home/Home';
-import MyCart from '../screens/Cart/MyCart';
-import Menu from '../screens/Home/Menu';
-import Settings from '../screens/Settings/Settings';
+import { Box } from 'native-base';
 import { RFValue } from 'react-native-responsive-fontsize';
 import {
   ActiveTabColor,
   InactiveTabColor,
   PrimaryColor,
 } from '../modules/colors';
+import MyCart from '../screens/Cart/MyCart';
+import Home from '../screens/Home/Home';
+import Menu from '../screens/Home/Menu';
+import Settings from '../screens/Settings/Settings';
 import {
   CartTabIcon,
   HomeTabIcon,
@@ -24,30 +25,45 @@ const BottomTab = createBottomTabNavigator();
 
 function tabIcons(label, isFocused) {
   if (label == 'Home') {
-    return <HomeTabIcon fill={isFocused ? ActiveTabColor : InactiveTabColor} />;
+    return (
+      <HomeTabIcon
+        fill={isFocused ? ActiveTabColor : InactiveTabColor}
+      />
+    );
   }
   if (label == 'Menu') {
-    return <MenuTabIcon fill={isFocused ? ActiveTabColor : InactiveTabColor} />;
+    return (
+      <MenuTabIcon
+        fill={isFocused ? ActiveTabColor : InactiveTabColor}
+      />
+    );
   }
   if (label == 'Cart') {
-    return <CartTabIcon fill={isFocused ? ActiveTabColor : InactiveTabColor} />;
+    return (
+      <CartTabIcon
+        fill={isFocused ? ActiveTabColor : InactiveTabColor}
+      />
+    );
   }
   if (label == 'Settings') {
     return (
-      <SettingsTabIcon fill={isFocused ? ActiveTabColor : InactiveTabColor} />
+      <SettingsTabIcon
+        fill={isFocused ? ActiveTabColor : InactiveTabColor}
+      />
     );
   }
 }
 
 function MyTabBar({ state, descriptors, navigation }) {
-  const focusedOptions = descriptors[state.routes[state.index].key].options;
+  const focusedOptions =
+    descriptors[state.routes[state.index].key].options;
 
   if (focusedOptions.tabBarVisible === false) {
     return null;
   }
 
   return (
-    <RN.View style={styles.barStyle}>
+    <Box safeAreaBottom style={styles.barStyle}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label =
@@ -81,7 +97,7 @@ function MyTabBar({ state, descriptors, navigation }) {
         return (
           <RN.TouchableOpacity
             key={label}
-            accessibilityRole='button'
+            accessibilityRole="button"
             accessibilityState={isFocused ? { selected: true } : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarTestID}
@@ -99,7 +115,11 @@ function MyTabBar({ state, descriptors, navigation }) {
             <RN.Text
               style={[
                 styles.label,
-                { color: isFocused ? ActiveTabColor : InactiveTabColor },
+                {
+                  color: isFocused
+                    ? ActiveTabColor
+                    : InactiveTabColor,
+                },
               ]}
             >
               {label}
@@ -107,7 +127,7 @@ function MyTabBar({ state, descriptors, navigation }) {
           </RN.TouchableOpacity>
         );
       })}
-    </RN.View>
+    </Box>
   );
 }
 
@@ -116,8 +136,9 @@ function MyTabBar({ state, descriptors, navigation }) {
 export function BottomTabNavigation() {
   return (
     <BottomTab.Navigator
-      initialRouteName={'Cart'}
-      tabBar={(props) => <MyTabBar {...props} />}
+      initialRouteName={'Home'}
+      screenOptions={{ headerShown: false }}
+      tabBar={props => <MyTabBar {...props} />}
     >
       <BottomTab.Screen name={'Home'} component={Home} />
       <BottomTab.Screen name={'Menu'} component={Menu} />
@@ -130,7 +151,6 @@ export function BottomTabNavigation() {
 const styles = RN.StyleSheet.create({
   barStyle: {
     backgroundColor: '#FFFFFF',
-    elevation: RFValue(3),
     margin: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -142,9 +162,10 @@ const styles = RN.StyleSheet.create({
     flex: 1,
     borderTopWidth: RFValue(3),
     paddingVertical: RFValue(10),
+    paddingBottom: 0,
   },
   label: {
-    fontFamily: 'Avenir-Regular',
+    fontFamily: 'AvenirNextLTPro-Regular',
     fontSize: RFValue(12),
     color: '#CCCCCC',
     paddingTop: RFValue(5),

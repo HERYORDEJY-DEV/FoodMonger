@@ -7,7 +7,6 @@ import {
   View,
   Pressable,
 } from 'react-native';
-import Constants from 'expo-constants';
 
 import * as Animatable from 'react-native-animatable';
 import Collapsible from 'react-native-collapsible';
@@ -49,7 +48,7 @@ export default class AccordionView extends Component<
     this.setState({ collapsed: !this.state.collapsed });
   };
 
-  setSections = (sections) => {
+  setSections = sections => {
     this.setState({
       activeSections: sections.includes(undefined) ? [] : sections,
     });
@@ -59,15 +58,22 @@ export default class AccordionView extends Component<
     const { multipleSelect, activeSections } = this.state;
 
     return (
-      <View style={[styles.container, { ...this.props.containerStyles }]}>
-        <Pressable onPress={this.toggleExpanded} style={styles.headerWrapper}>
+      <View
+        style={[styles.container, { ...this.props.containerStyles }]}
+      >
+        <Pressable
+          onPress={this.toggleExpanded}
+          style={styles.headerWrapper}
+        >
           {this.props.headerComponent(
             this.state.collapsed ? SecondaryColor : PrimaryColor,
           )}
           {!this.props.arrowDownComponent ? (
             <NB.Icon
               style={styles.arrow}
-              name={this.state.collapsed ? 'chevron-down' : 'chevron-up'}
+              name={
+                this.state.collapsed ? 'chevron-down' : 'chevron-up'
+              }
               type={'Feather'}
             />
           ) : this.state.collapsed ? (
@@ -76,7 +82,7 @@ export default class AccordionView extends Component<
             this.props.arrowUpComponent
           )}
         </Pressable>
-        <Collapsible collapsed={this.state.collapsed} align='center'>
+        <Collapsible collapsed={this.state.collapsed} align="center">
           {this.props.contentComponent}
         </Collapsible>
       </View>

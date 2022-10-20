@@ -25,7 +25,10 @@ export default class ButtonPrimarySmall extends React.Component<
   }
 
   onPressIn = () =>
-    this.setState(() => ({ ...this.state, selected: !this.state.selected }));
+    this.setState(() => ({
+      ...this.state,
+      selected: !this.state.selected,
+    }));
 
   public render() {
     return (
@@ -35,7 +38,9 @@ export default class ButtonPrimarySmall extends React.Component<
           styles.container,
           {
             ...this.props.containerStyles,
-            backgroundColor: this.state.selected ? PrimaryColor : '#F2F2F2',
+            backgroundColor: this.state.selected
+              ? PrimaryColor
+              : '#F2F2F2',
           },
         ]}
         onPress={this.props.onPress}
@@ -63,7 +68,7 @@ const styles = RN.StyleSheet.create({
     paddingHorizontal: RFValue(20),
   },
   title: {
-    fontFamily: 'Avenir-Regular',
+    fontFamily: 'AvenirNextLTPro-Regular',
     color: '#4B4B4B',
     fontSize: RFValue(14),
   },

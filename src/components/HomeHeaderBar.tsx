@@ -1,13 +1,12 @@
 import * as React from 'react';
-import * as RN from 'react-native';
-import { Asset } from 'expo-asset';
+import { StyleSheet, Text } from 'react-native';
 
+import { Avatar, Box, HStack, Pressable, View } from 'native-base';
 import { RFValue } from 'react-native-responsive-fontsize';
-import * as NB from 'native-base';
 
+import { ScreenBG, SecondaryColor } from '../modules/colors';
 import { rfv } from '../modules/sizing';
 import { BellIcon } from '../svg/BellIcon';
-import { ScreenBG, SecondaryColor } from '../modules/colors';
 
 export interface HomeHeaderBarProps {}
 
@@ -25,28 +24,30 @@ export default class HomeHeaderBar extends React.Component<
 
   public render() {
     return (
-      <RN.View style={[styles.container]}>
-        <RN.View style={styles.bioWrapper}>
-          <NB.Thumbnail
-            small={true}
-            style={styles.thumbnail}
-            source={require('../assets/images/user2.jpg')}
-            square={true}
-          />
-          <RN.View>
-            <RN.Text style={styles.greeting}>Good Morning</RN.Text>
-            <RN.Text style={styles.name}>Oyebode</RN.Text>
-          </RN.View>
-        </RN.View>
-        <RN.Pressable style={styles.iconWrapper}>
-          <BellIcon />
-        </RN.Pressable>
-      </RN.View>
+      <Box safeAreaTop={true}>
+        <HStack style={[styles.container]}>
+          <HStack style={styles.bioWrapper}>
+            <Avatar
+              alignSelf="center"
+              size="md"
+              source={require('../assets/images/user2.jpg')}
+              mr={3}
+            />
+            <View>
+              <Text style={styles.greeting}>Good Morning</Text>
+              <Text style={styles.name}>Ayodeji</Text>
+            </View>
+          </HStack>
+          <Pressable style={styles.iconWrapper}>
+            <BellIcon />
+          </Pressable>
+        </HStack>
+      </Box>
     );
   }
 }
 
-const styles = RN.StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     height: RFValue(56 - 8),
     flexDirection: 'row',
@@ -61,16 +62,21 @@ const styles = RN.StyleSheet.create({
     justifyContent: 'flex-start',
   },
   thumbnail: {
-    borderRadius: RFValue(10),
+    // borderRadius: RFValue(10),
     width: RFValue(42),
     height: RFValue(42),
     marginRight: RFValue(10),
   },
-  greeting: { fontSize: RFValue(12), color: SecondaryColor },
+  greeting: {
+    fontSize: RFValue(12),
+    color: SecondaryColor,
+    fontFamily: 'SFProDisplay-Regular',
+  },
   name: {
     fontSize: RFValue(20),
     color: SecondaryColor,
-    paddingTop: RFValue(5),
+    // paddingTop: RFValue(1),
+    fontFamily: 'SFProDisplay-Semibold',
   },
   iconWrapper: {
     width: RFValue(56 - 8),

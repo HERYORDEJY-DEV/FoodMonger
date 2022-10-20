@@ -1,13 +1,13 @@
 import * as React from 'react';
 import * as RN from 'react-native';
 
+import { useNavigation } from '@react-navigation/native';
 import * as NB from 'native-base';
 import { RFValue } from 'react-native-responsive-fontsize';
 import NavigationBar from '../../components/NavigationBar';
 import OrderHistoryItem from '../../components/OrderHistoryItem';
+import { PrimaryColor, ScreenBG } from '../../modules/colors';
 import { CalendarIcon } from '../../svg/CalendarIcon';
-import { PrimaryColor, ScreenBG, SecondaryColor } from '../../modules/colors';
-import { useNavigation } from '@react-navigation/native';
 
 export interface OrderHistoryProps {}
 
@@ -28,15 +28,15 @@ export default function OrderHistory(props: OrderHistoryProps) {
       <RN.View style={styles.descWrapper}>
         <RN.Text style={styles.title}>No History Yet</RN.Text>
         <RN.Text style={styles.subtitle}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Facilisi arcu
-          ut aliquet et cursus.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Facilisi arcu ut aliquet et cursus.
         </RN.Text>
       </RN.View>
     </RN.View>
   );
 
   const renderHistoryList = () => (
-    <RN.View style={styles.listWrapper}>
+    <RN.View>
       <OrderHistoryItem orderId={'1234567'} status={'Pending'} />
       <OrderHistoryItem orderId={'1234567'} status={'Canceled'} />
       <OrderHistoryItem orderId={'1234567'} status={'delivered'} />
@@ -44,26 +44,29 @@ export default function OrderHistory(props: OrderHistoryProps) {
   );
 
   return (
-    <NB.Container style={styles.container}>
-      <RN.StatusBar barStyle={'dark-content'} backgroundColor={ScreenBG} />
+    <NB.Box style={styles.container}>
+      <RN.StatusBar
+        barStyle={'dark-content'}
+        backgroundColor={ScreenBG}
+      />
       <NavigationBar
         title={'Order History'}
         leftOnPress={() => navigation.goBack()}
       />
-      <NB.Content
+      <NB.ScrollView
+        px={2.5}
         style={styles.content}
         contentContainerStyle={styles.contentContainerStyle}
       >
         {renderHistoryList()}
         {/*{renderEmptyHistory()}*/}
-      </NB.Content>
-    </NB.Container>
+      </NB.ScrollView>
+    </NB.Box>
   );
 }
 
 const styles = RN.StyleSheet.create({
   container: {
-    paddingHorizontal: RFValue(20),
     backgroundColor: ScreenBG,
     flex: 1,
   },
@@ -88,14 +91,14 @@ const styles = RN.StyleSheet.create({
     fontSize: RFValue(18),
     color: '#444444',
     textAlign: 'center',
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     marginBottom: RFValue(10),
   },
   subtitle: {
     fontSize: RFValue(14),
     color: '#666666',
     textAlign: 'center',
-    fontFamily: 'Avenir-Regular',
+    fontFamily: 'AvenirNextLTPro-Regular',
     paddingVertical: RFValue(10),
     paddingHorizontal: RFValue(20),
     letterSpacing: 1,

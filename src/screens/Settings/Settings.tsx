@@ -1,12 +1,12 @@
 import * as React from 'react';
 import * as RN from 'react-native';
 
+import { useNavigation } from '@react-navigation/native';
 import * as NB from 'native-base';
 import { RFValue } from 'react-native-responsive-fontsize';
 import NavigationBar from '../../components/NavigationBar';
-import { ScreenBG, SecondaryColor } from '../../modules/colors';
 import SettingsLinkItem from '../../components/SettingsLinkItem';
-import { useNavigation } from '@react-navigation/native';
+import { ScreenBG, SecondaryColor } from '../../modules/colors';
 
 export interface SettingsProps {}
 
@@ -21,12 +21,17 @@ export default function Settings(props: SettingsProps) {
   const navigation = useNavigation();
 
   return (
-    <NB.Container style={styles.container}>
-      <RN.StatusBar barStyle={'dark-content'} backgroundColor={ScreenBG} />
-      <NavigationBar
-        leftComponent={<RN.Text style={styles.screenTitle}>Settings</RN.Text>}
+    <NB.Box style={styles.container}>
+      <RN.StatusBar
+        barStyle={'dark-content'}
+        backgroundColor={ScreenBG}
       />
-      <NB.Content
+      <NavigationBar
+        leftComponent={
+          <RN.Text style={styles.screenTitle}>Settings</RN.Text>
+        }
+      />
+      <NB.ScrollView
         style={styles.content}
         contentContainerStyle={styles.contentContainerStyle}
         showsVerticalScrollIndicator={false}
@@ -55,8 +60,8 @@ export default function Settings(props: SettingsProps) {
         />
         <SettingsLinkItem title={'Rate Us'} iconName={'star'} />
         <SettingsLinkItem title={'Log Out'} iconName={'power'} />
-      </NB.Content>
-    </NB.Container>
+      </NB.ScrollView>
+    </NB.Box>
   );
 }
 
@@ -68,9 +73,12 @@ const styles = RN.StyleSheet.create({
     flex: 1,
   },
   content: {},
-  contentContainerStyle: { paddingBottom: RFValue(20) },
+  contentContainerStyle: {
+    paddingBottom: RFValue(20),
+    paddingTop: RFValue(10),
+  },
   screenTitle: {
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     fontSize: RFValue(20),
     color: SecondaryColor,
   },

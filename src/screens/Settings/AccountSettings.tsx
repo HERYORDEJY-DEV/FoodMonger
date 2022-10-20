@@ -1,19 +1,24 @@
 import * as React from 'react';
 import * as RN from 'react-native';
 
+import { Formik } from 'formik';
 import * as NB from 'native-base';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { Formik } from 'formik';
+import Feather from 'react-native-vector-icons/Feather';
 
-import NavigationBar from '../../components/NavigationBar';
-import { ScreenBG, SecondaryColor } from '../../modules/colors';
-import InputBar from '../../components/InputBar';
+import { useNavigation } from '@react-navigation/native';
 import ButtonPrimaryBig from '../../components/ButtonPrimaryBig';
+import InputBar from '../../components/InputBar';
+import NavigationBar from '../../components/NavigationBar';
+import {
+  PrimaryColor,
+  ScreenBG,
+  SecondaryColor,
+} from '../../modules/colors';
 import {
   AccountSettingsDataSchema,
   accountSettingsInitialValues,
 } from '../../modules/dataSchema';
-import { useNavigation } from '@react-navigation/native';
 
 export interface AccountSettingsProps {}
 
@@ -25,40 +30,62 @@ export interface AccountSettingsState {}
 export default function AccountSettings(props: AccountSettingsProps) {
   const navigation = useNavigation();
 
+  const renderAvatar = (
+    <NB.Center
+      position={'absolute'}
+      top={RFValue(-40)}
+      left={'40%'}
+      style={styles.imageWrapper}
+    >
+      <NB.View style={styles.imageSubWrapper}>
+        <NB.Avatar
+          source={require('../../assets/images/user2.jpg')}
+          style={styles.thumbnail}
+          rounded={'full'}
+          size={'md'}
+        />
+        <NB.View style={styles.overlay} />
+      </NB.View>
+
+      <NB.Pressable
+        style={styles.addPhotoWrapper}
+        position={'absolute'}
+        bottom={-6}
+        right={-6}
+      >
+        <NB.Circle
+          size={8}
+          backgroundColor={PrimaryColor}
+          alignItems={'center'}
+          justifyContent={'center'}
+          borderColor={'#FFFFFF'}
+          borderWidth={2}
+        >
+          <NB.Icon name={'camera'} as={Feather} color={'#FFFFFF'} />
+        </NB.Circle>
+      </NB.Pressable>
+    </NB.Center>
+  );
+
   return (
-    <NB.Container style={styles.container}>
-      <RN.StatusBar barStyle={'dark-content'} backgroundColor={ScreenBG} />
+    <NB.Box safeAreaBottom={true} style={styles.container}>
+      <RN.StatusBar
+        barStyle={'dark-content'}
+        backgroundColor={ScreenBG}
+      />
       <NavigationBar
         leftOnPress={() => navigation.goBack()}
         title={'Account Settings'}
       />
-      <NB.Content
+      <NB.ScrollView
+        px={2.5}
         style={styles.content}
         contentContainerStyle={styles.contentContainerStyle}
       >
-        <RN.View style={styles.imageWrapper}>
-          <RN.View style={styles.imageSubWrapper}>
-            <NB.Thumbnail
-              source={require('../../assets/images/user2.jpg')}
-              style={styles.thumbnail}
-              circular={true}
-              large={true}
-            />
-            <RN.View style={styles.overlay} />
-          </RN.View>
-
-          <RN.Pressable style={styles.addPhotoWrapper}>
-            <NB.Icon
-              name={'camera'}
-              type={'Feather'}
-              style={styles.addphotoIcon}
-            />
-          </RN.Pressable>
-        </RN.View>
-        <RN.View style={styles.formWrapper}>
+        <NB.View style={styles.formWrapper}>
           <Formik
             validationSchema={AccountSettingsDataSchema}
-            onSubmit={(values) => console.log(JSON.stringify(values))}
+            onSubmit={values => console.log(JSON.stringify(values))}
             initialValues={accountSettingsInitialValues}
           >
             {({
@@ -70,8 +97,9 @@ export default function AccountSettings(props: AccountSettingsProps) {
               isValid,
               handleSubmit,
             }) => (
-              <RN.View>
-                <RN.View style={styles.inputsWrapper}>
+              <NB.View>
+                <NB.View style={styles.inputsWrapper} pt={10}>
+                  {renderAvatar}
                   <InputBar
                     placeholder={'Full Name'}
                     placeholderTextColor={'transparent'}
@@ -128,32 +156,30 @@ export default function AccountSettings(props: AccountSettingsProps) {
                     errors={errors.password}
                     containerStyles={{ marginBottom: RFValue(20) }}
                   />
-                </RN.View>
-                <RN.View style={styles.updateWrapper}>
-                  <ButtonPrimaryBig title={'Update'} onPress={() => {}} />
-                </RN.View>
-              </RN.View>
+                </NB.View>
+                <NB.View style={styles.updateWrapper}>
+                  <ButtonPrimaryBig
+                    title={'Update'}
+                    onPress={() => {}}
+                  />
+                </NB.View>
+              </NB.View>
             )}
           </Formik>
-        </RN.View>
-      </NB.Content>
-    </NB.Container>
+        </NB.View>
+      </NB.ScrollView>
+    </NB.Box>
   );
 }
 
 const styles = RN.StyleSheet.create({
   container: {
-    paddingHorizontal: RFValue(20),
     flex: 1,
     backgroundColor: ScreenBG,
   },
   content: { flex: 1 },
   contentContainerStyle: { alignItems: 'center' },
   imageWrapper: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginVertical: RFValue(20),
-    position: 'absolute',
     flex: 1,
     zIndex: 10000,
   },
@@ -168,19 +194,19 @@ const styles = RN.StyleSheet.create({
     padding: RFValue(20),
     backgroundColor: '#FFF',
     borderRadius: RFValue(10),
-    paddingTop: RFValue(70),
-    marginTop: RFValue(80),
+    marginTop: RFValue(60),
     marginBottom: RFValue(20),
+    paddingTop: RFValue(50),
   },
 
   thumbnail: {
-    width: RFValue(109 - 8),
-    height: RFValue(109 - 8),
+    width: RFValue(80 - 8),
+    height: RFValue(80 - 8),
     borderRadius: RFValue(109 / 2),
   },
   imageSubWrapper: {
-    width: RFValue(109 - 8),
-    height: RFValue(109 - 8),
+    width: RFValue(80 - 8),
+    height: RFValue(80 - 8),
     borderRadius: RFValue(109 / 2),
   },
   overlay: {
@@ -193,6 +219,9 @@ const styles = RN.StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  addphotoIcon: { width: RFValue(24), height: RFValue(24), color: '#FFFFFF' },
-  updateWrapper: { position: 'relative', bottom: 0, marginTop: RFValue(20) },
+  updateWrapper: {
+    position: 'relative',
+    bottom: 0,
+    marginTop: RFValue(20),
+  },
 });

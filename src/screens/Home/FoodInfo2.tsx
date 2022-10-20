@@ -2,25 +2,21 @@ import * as React from 'react';
 import * as RN from 'react-native';
 
 import * as NB from 'native-base';
+import { useState } from 'react';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { addOnData } from '../../api/datas';
+import AddOnItem from '../../components/AddOnItem';
+import ButtonPrimaryBig from '../../components/ButtonPrimaryBig';
+import DeliverySuccessfulModal from '../../components/DeliverySuccessfulModal';
+import DialogueBox from '../../components/DialogueBox';
 import NavigationBar from '../../components/NavigationBar';
-import { ArrowIconLeft } from '../../svg/ArrowIcon';
 import {
   GrayColor,
   PrimaryColor,
   ScreenBG,
   SecondaryColor,
 } from '../../modules/colors';
-import { CheckBoxActiveIcon } from '../../svg/CheckBoxIcon';
-import AddOnItem from '../../components/AddOnItem';
-import { addOnData } from '../../api/datas';
-import ButtonPrimaryBig from '../../components/ButtonPrimaryBig';
 import { FavoriteActiveIcon } from '../../svg/FavoriteIcon';
-import Filter from '../../components/Filter';
-import ButtonPrimarySmall from '../../components/ButtonPrimarySmall';
-import DialogueBox from '../../components/DialogueBox';
-import { useState } from 'react';
-import DeliverySuccessfulModal from '../../components/DeliverySuccessfulModal';
 export interface FoodInfoProps {
   price: number;
   quantity: number;
@@ -30,24 +26,27 @@ export interface FoodInfoProps {
 export interface FoodInfoState {}
 
 export default function FoodInfo2(props: FoodInfoProps) {
-  const [foodInfo, setFoodInfo] = React.useState({ price: 2000, quantity: 0 });
-  const [confirmDialogueVisible, setConfirmDialogueVisible] = useState(false);
-  const [successfullDialogueVisible, setSuccessfulDialogueVisible] = useState(
-    false,
-  );
+  const [foodInfo, setFoodInfo] = React.useState({
+    price: 2000,
+    quantity: 0,
+  });
+  const [confirmDialogueVisible, setConfirmDialogueVisible] =
+    useState(false);
+  const [successfullDialogueVisible, setSuccessfulDialogueVisible] =
+    useState(false);
 
   const [favorite, setFavorite] = useState(false);
 
   const toggleFavorite = () => setFavorite(!favorite);
 
-  const plusQuantity = (addOn) => {
+  const plusQuantity = addOn => {
     setFoodInfo({
       ...foodInfo,
       quantity: foodInfo.quantity + 1,
     });
   };
 
-  const minusQuantity = (addOn) =>
+  const minusQuantity = addOn =>
     setFoodInfo({
       ...foodInfo,
       quantity: foodInfo.quantity - 1,
@@ -69,24 +68,38 @@ export default function FoodInfo2(props: FoodInfoProps) {
           onPress={minusQuantity}
           disabled={foodInfo.quantity > 0 ? false : true}
         >
-          <NB.Icon style={styles.minusIcon} name={'minus'} type={'Feather'} />
+          <NB.Icon
+            style={styles.minusIcon}
+            name={'minus'}
+            type={'Feather'}
+          />
         </RN.Pressable>
 
         <RN.View style={styles.quantityNumberWrapper}>
-          <RN.Text style={styles.quantityNumber}>{foodInfo.quantity}</RN.Text>
+          <RN.Text style={styles.quantityNumber}>
+            {foodInfo.quantity}
+          </RN.Text>
         </RN.View>
         <RN.Pressable
           onPress={plusQuantity}
-          style={[styles.quantityButton, { backgroundColor: PrimaryColor }]}
+          style={[
+            styles.quantityButton,
+            { backgroundColor: PrimaryColor },
+          ]}
         >
-          <NB.Icon style={styles.minusIcon} name={'plus'} type={'Feather'} />
+          <NB.Icon
+            style={styles.minusIcon}
+            name={'plus'}
+            type={'Feather'}
+          />
         </RN.Pressable>
       </RN.View>
     </RN.View>
   );
 
   const showConfirmDialogue = () => setConfirmDialogueVisible(true);
-  const showSuccessfulDialogue = () => setSuccessfulDialogueVisible(true);
+  const showSuccessfulDialogue = () =>
+    setSuccessfulDialogueVisible(true);
   const hideConfirmDialogue = () => {
     setConfirmDialogueVisible(false);
     setSuccessfulDialogueVisible(true);
@@ -97,7 +110,7 @@ export default function FoodInfo2(props: FoodInfoProps) {
       <RN.Text
         style={{
           fontSize: RFValue(14),
-          fontFamily: 'Avenir-DemiBold',
+          fontFamily: 'AvenirNextW04-Demi',
           textAlign: 'center',
           paddingHorizontal: RFValue(20),
           color: SecondaryColor,
@@ -161,10 +174,13 @@ export default function FoodInfo2(props: FoodInfoProps) {
           contentContainerStyle={styles.contentContainerStyle}
           showsVerticalScrollIndicator={false}
         >
-          <RN.Text style={styles.title}>Mixed with Chicken and Coke</RN.Text>
+          <RN.Text style={styles.title}>
+            Mixed with Chicken and Coke
+          </RN.Text>
           <RN.Text style={styles.subtitle}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tellus
-            egestas ultrices tristique ornare congue adipiscing tincidunt et.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Tellus egestas ultrices tristique ornare congue adipiscing
+            tincidunt et.
           </RN.Text>
 
           <RN.View style={styles.priceQuanityWrapper}>
@@ -173,7 +189,9 @@ export default function FoodInfo2(props: FoodInfoProps) {
           </RN.View>
 
           <RN.View style={styles.addOnWrapper}>
-            <RN.Text style={styles.addOnTitle}>Choice of Add On</RN.Text>
+            <RN.Text style={styles.addOnTitle}>
+              Choice of Add On
+            </RN.Text>
             <RN.View style={styles.addOnSubwrapper}>
               <AddOnItem data={addOnData} />
             </RN.View>
@@ -202,7 +220,11 @@ export default function FoodInfo2(props: FoodInfoProps) {
 }
 
 const styles = RN.StyleSheet.create({
-  container: { paddingBottom: 0, marginBottom: 0, backgroundColor: ScreenBG },
+  container: {
+    paddingBottom: 0,
+    marginBottom: 0,
+    backgroundColor: ScreenBG,
+  },
   content: {
     backgroundColor: ScreenBG,
     borderTopLeftRadius: RFValue(30),
@@ -289,14 +311,14 @@ const styles = RN.StyleSheet.create({
   title: {
     fontSize: RFValue(24),
     color: SecondaryColor,
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     marginBottom: RFValue(10),
     marginRight: RFValue(30),
   },
   subtitle: {
     fontSize: RFValue(14),
     color: '#666666',
-    fontFamily: 'Avenir-Regular',
+    fontFamily: 'AvenirNextLTPro-Regular',
     lineHeight: RFValue(20),
     marginBottom: RFValue(20),
   },
@@ -309,19 +331,19 @@ const styles = RN.StyleSheet.create({
   priceHeader: {
     fontSize: RFValue(14),
     color: SecondaryColor,
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     marginBottom: RFValue(10),
   },
   priceNumber: {
     fontSize: RFValue(24),
     color: SecondaryColor,
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     marginBottom: RFValue(10),
   },
   quantityHeader: {
     fontSize: RFValue(14),
     color: SecondaryColor,
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     marginBottom: RFValue(10),
   },
   quantityButtonWrapper: {
@@ -340,7 +362,7 @@ const styles = RN.StyleSheet.create({
   minusIcon: {
     fontSize: RFValue(12),
     color: '#FFFFFF',
-    fontFamily: 'Avenir-Bold',
+    fontFamily: 'AvenirNextW06-Bold',
   },
   quantityNumberWrapper: {
     width: RFValue(45 - 8),
@@ -350,14 +372,14 @@ const styles = RN.StyleSheet.create({
   quantityNumber: {
     fontSize: RFValue(18),
     color: SecondaryColor,
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     // paddingHorizontal: RFValue(10),
   },
   addOnWrapper: {},
   addOnTitle: {
     fontSize: RFValue(14),
     color: SecondaryColor,
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     marginBottom: RFValue(10),
   },
   addOnSubwrapper: {
@@ -384,7 +406,7 @@ const styles = RN.StyleSheet.create({
   price: {
     color: PrimaryColor,
     fontSize: RFValue(16),
-    fontFamily: 'Avenir-Medium',
+    fontFamily: 'AvenirNextW10-Medium',
   },
   bottomWrapper: {
     flexDirection: 'row',

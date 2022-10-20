@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
 import * as RN from 'react-native';
 
@@ -12,37 +13,34 @@ export interface HomeSearchBarProps {
 
 export interface HomeSearchBarState {}
 
-export default class HomeSearchBar extends React.Component<
-  HomeSearchBarProps,
-  HomeSearchBarState
-> {
-  constructor(props: HomeSearchBarProps) {
-    super(props);
+export default function HomeSearchBar(props: HomeSearchBarProps) {
+  const [state, setState] = React.useState({});
+  const navigation = useNavigation();
 
-    this.state = {};
-  }
-
-  public render() {
-    return (
-      <RN.View style={[styles.container]}>
-        {/* // TODO input shadow wrapper not complete */}
-        <RN.View style={styles.inputWrapper}>
-          {this.props.searchResult && <SearchIcon />}
-          <RN.TextInput
-            placeholder={'What do yo want to eat'}
-            placeholderTextColor={SecondaryColor}
-            style={[
-              styles.textInput,
-              { marginLeft: this.props.searchResult ? RFValue(10) : 0 },
-            ]}
-          />
-        </RN.View>
-        <RN.Pressable style={styles.iconWrapper}>
-          <FilterIcon />
-        </RN.Pressable>
+  return (
+    <RN.View style={[styles.container]}>
+      {/* // TODO input shadow wrapper not complete */}
+      <RN.View style={styles.inputWrapper}>
+        {props.searchResult && <SearchIcon />}
+        <RN.TextInput
+          placeholder={'What do you want to eat'}
+          placeholderTextColor={SecondaryColor}
+          style={[
+            styles.textInput,
+            {
+              marginLeft: props.searchResult ? RFValue(10) : 0,
+            },
+          ]}
+        />
       </RN.View>
-    );
-  }
+      <RN.Pressable
+        style={styles.iconWrapper}
+        onPress={() => navigation.navigate('Search')}
+      >
+        <FilterIcon />
+      </RN.Pressable>
+    </RN.View>
+  );
 }
 
 const styles = RN.StyleSheet.create({
@@ -72,6 +70,7 @@ const styles = RN.StyleSheet.create({
     color: SecondaryColor,
     marginLeft: RFValue(10),
     flex: 1,
+    fontFamily: 'SFProDisplay-Regular',
   },
   iconWrapper: {
     height: RFValue(56 - 8),

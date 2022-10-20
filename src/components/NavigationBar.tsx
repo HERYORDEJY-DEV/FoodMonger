@@ -1,8 +1,9 @@
 import * as React from 'react';
 import * as RN from 'react-native';
 
-import { RFValue } from 'react-native-responsive-fontsize';
 import * as NB from 'native-base';
+import { RFValue } from 'react-native-responsive-fontsize';
+import Feather from 'react-native-vector-icons/Feather';
 import { SecondaryColor } from '../modules/colors';
 
 export interface Props {
@@ -29,7 +30,12 @@ const backArrowWrapper: {} = {
   margin: RFValue(0),
 };
 
-export default class NavigationBar extends React.Component<Props, State> {
+const { width: windowWidth } = RN.Dimensions.get('window');
+
+export default class NavigationBar extends React.Component<
+  Props,
+  State
+> {
   constructor(props: Props) {
     super(props);
 
@@ -44,10 +50,17 @@ export default class NavigationBar extends React.Component<Props, State> {
     >
       {/*  TODO  get the arrow icon from the Figma file */}
       {this.props.leftComponent ?? (
-        <NB.Icon type={'Feather'} name={'chevron-left'} style={styles.icon} />
+        <NB.Icon
+          as={Feather}
+          name={'chevron-left'}
+          size={'xl'}
+          color={SecondaryColor}
+        />
       )}
     </RN.Pressable>
   );
+
+  //
 
   renderBody = () => (
     <RN.View style={styles.bodyContainer}>
@@ -63,11 +76,20 @@ export default class NavigationBar extends React.Component<Props, State> {
 
   public render() {
     return (
-      <RN.View style={[styles.container, this.props.containerStyles]}>
-        {!this.props.noLeft && this.renderLeft()}
-        {this.renderBody()}
-        {this.renderRight()}
-      </RN.View>
+      <NB.Box
+        safeAreaTop={true}
+        width={windowWidth}
+        px={2.5}
+        pb={2.5}
+      >
+        <NB.HStack
+          style={[styles.container, this.props.containerStyles]}
+        >
+          {!this.props.noLeft && this.renderLeft()}
+          {this.renderBody()}
+          {this.renderRight()}
+        </NB.HStack>
+      </NB.Box>
     );
   }
 }
@@ -84,7 +106,7 @@ const styles = RN.StyleSheet.create({
   bodyContainer: { alignItems: 'center', flex: 1 },
   rightContainer: { flex: 0.3 },
   title: {
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     fontSize: RFValue(20),
     color: SecondaryColor,
     textAlign: 'center',

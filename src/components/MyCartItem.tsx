@@ -1,12 +1,10 @@
 import * as React from 'react';
 import * as RN from 'react-native';
 
-import { RFValue } from 'react-native-responsive-fontsize';
 import * as NB from 'native-base';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 import { PrimaryColor, SecondaryColor } from '../modules/colors';
-import { ArrowCircleIcon } from '../svg/ArrowCircleIcon';
-import { PlusBoxIcon } from '../svg/PlusBoxIcon';
 
 export interface MyCartItemProps {
   id: string;
@@ -31,12 +29,18 @@ export default class MyCartItem extends React.Component<
   constructor(props: MyCartItemProps) {
     super(props);
 
-    this.state = { price: 2000, quantity: Number(this.props.quantity) };
+    this.state = {
+      price: 2000,
+      quantity: Number(this.props.quantity),
+    };
   }
 
-  plusQuantity = (id) => {
+  plusQuantity = id => {
     this.setState((prevState, props) => {
-      this.props.onChangeQuantity(this.props.id, +prevState.quantity + 1);
+      this.props.onChangeQuantity(
+        this.props.id,
+        +prevState.quantity + 1,
+      );
       return {
         ...this.state,
         quantity: +prevState.quantity + 1,
@@ -44,9 +48,12 @@ export default class MyCartItem extends React.Component<
     });
   };
 
-  minusQuantity = (id) => {
+  minusQuantity = id => {
     this.setState((prevState, props) => {
-      this.props.onChangeQuantity(this.props.id, +prevState.quantity - 1);
+      this.props.onChangeQuantity(
+        this.props.id,
+        +prevState.quantity - 1,
+      );
       return {
         ...this.state,
         quantity: +prevState.quantity - 1,
@@ -59,7 +66,10 @@ export default class MyCartItem extends React.Component<
       <RN.Pressable style={[styles.container]}>
         <RN.View style={styles.contentWrapper}>
           <RN.View style={styles.imageWrapper}>
-            <RN.Image style={styles.image} source={this.props.imageSource} />
+            <RN.Image
+              style={styles.image}
+              source={this.props.imageSource}
+            />
           </RN.View>
           <RN.View style={styles.bottomWrapper}>
             {/* Title */}
@@ -81,7 +91,9 @@ export default class MyCartItem extends React.Component<
               {/* Addition */}
               <RN.Text style={styles.price}>
                 ₦
-                <RN.Text style={styles.priceNumber}>{this.props.price}</RN.Text>
+                <RN.Text style={styles.priceNumber}>
+                  {this.props.price}
+                </RN.Text>
               </RN.Text>
 
               {/* Quantity select */}
@@ -179,19 +191,19 @@ const styles = RN.StyleSheet.create({
   },
   title: {
     fontSize: RFValue(14),
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     color: SecondaryColor,
     textTransform: 'capitalize',
   },
   price: {
     color: PrimaryColor,
     fontSize: RFValue(12),
-    fontFamily: 'Avenir-Medium',
+    fontFamily: 'AvenirNextW10-Medium',
   },
   priceNumber: {
     fontSize: RFValue(16),
     color: SecondaryColor,
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
   },
   iconWrapper: {
     height: RFValue(34 - 8),
@@ -223,7 +235,7 @@ const styles = RN.StyleSheet.create({
   minusIcon: {
     fontSize: RFValue(12),
     color: SecondaryColor,
-    fontFamily: 'Avenir-Bold',
+    fontFamily: 'AvenirNextW06-Bold',
   },
   quantityNumberWrapper: {
     width: RFValue(45 - 8),
@@ -233,7 +245,7 @@ const styles = RN.StyleSheet.create({
   quantityNumber: {
     fontSize: RFValue(18),
     color: SecondaryColor,
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     // paddingHorizontal: RFValue(10),
   },
 });

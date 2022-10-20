@@ -1,10 +1,9 @@
+import { Pressable } from 'native-base';
 import * as React from 'react';
 import * as RN from 'react-native';
 
-import * as NB from 'native-base';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { PrimaryColor, SecondaryColor } from '../modules/colors';
-import { ArrowCircleIcon } from '../svg/ArrowCircleIcon';
 import { PlusBoxIcon } from '../svg/PlusBoxIcon';
 
 export interface SearchItemHorizontalProps {
@@ -12,6 +11,8 @@ export interface SearchItemHorizontalProps {
   imageSource: any;
   price: string;
   potion: string;
+  containerStyles?: RN.ViewStyle;
+  onPress?: () => void;
 }
 
 export interface SearchItemHorizontalState {}
@@ -28,10 +29,17 @@ export default class SearchItemHorizontal extends React.Component<
 
   public render() {
     return (
-      <RN.Pressable style={[styles.container]}>
+      <Pressable
+        onPress={this.props.onPress}
+        shadow={3}
+        style={[styles.container, this.props.containerStyles]}
+      >
         <RN.View style={styles.contentWrapper}>
           <RN.View style={styles.imageWrapper}>
-            <RN.Image style={styles.image} source={this.props.imageSource} />
+            <RN.Image
+              style={styles.image}
+              source={this.props.imageSource}
+            />
           </RN.View>
           <RN.View style={styles.bottomWrapper}>
             {/* Title */}
@@ -53,7 +61,9 @@ export default class SearchItemHorizontal extends React.Component<
               {/* Addition */}
               <RN.Text style={styles.price}>
                 ₦
-                <RN.Text style={styles.priceNumber}>{this.props.price}</RN.Text>
+                <RN.Text style={styles.priceNumber}>
+                  {this.props.price}
+                </RN.Text>
               </RN.Text>
             </RN.View>
           </RN.View>
@@ -61,7 +71,7 @@ export default class SearchItemHorizontal extends React.Component<
         <RN.View style={styles.iconWrapper}>
           <PlusBoxIcon />
         </RN.View>
-      </RN.Pressable>
+      </Pressable>
     );
   }
 }
@@ -85,7 +95,7 @@ const styles = RN.StyleSheet.create({
     height: RFValue(115 - 8),
     marginVertical: RFValue(5),
     padding: RFValue(10),
-    paddingHorizontal: RFValue(10),
+    // paddingHorizontal: RFValue(10),
     elevation: RFValue(2),
     alignItems: 'center',
     justifyContent: 'center',
@@ -116,19 +126,19 @@ const styles = RN.StyleSheet.create({
   },
   title: {
     fontSize: RFValue(14),
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     color: SecondaryColor,
     textTransform: 'capitalize',
   },
   price: {
     color: PrimaryColor,
     fontSize: RFValue(12),
-    fontFamily: 'Avenir-Medium',
+    fontFamily: 'AvenirNextW10-Medium',
   },
   priceNumber: {
     fontSize: RFValue(16),
     color: SecondaryColor,
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
   },
 
   addition: { color: '#898A8D', fontSize: RFValue(12) },

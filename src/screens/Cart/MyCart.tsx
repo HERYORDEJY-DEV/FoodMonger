@@ -1,17 +1,21 @@
 import * as React from 'react';
 import * as RN from 'react-native';
 
+import { useNavigation } from '@react-navigation/native';
 import * as NB from 'native-base';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { CartIcon } from '../../svg/CartIcon';
-import { PrimaryColor, ScreenBG, SecondaryColor } from '../../modules/colors';
-import MyCartItem from '../../components/MyCartItem';
-import PromoCodeBar from '../../components/PromoCodeBar';
-import MyCartinvoice from '../../components/MyCartInvoice';
-import NavigationBar from '../../components/NavigationBar';
-import ButtonPrimaryBig from '../../components/ButtonPrimaryBig';
-import { useNavigation } from '@react-navigation/native';
 import { cartItemData, promoCodeData } from '../../api/datas';
+import ButtonPrimaryBig from '../../components/ButtonPrimaryBig';
+import MyCartinvoice from '../../components/MyCartInvoice';
+import MyCartItem from '../../components/MyCartItem';
+import NavigationBar from '../../components/NavigationBar';
+import PromoCodeBar from '../../components/PromoCodeBar';
+import {
+  PrimaryColor,
+  ScreenBG,
+  SecondaryColor,
+} from '../../modules/colors';
+import { CartIcon } from '../../svg/CartIcon';
 
 export interface MyCartProps {}
 
@@ -43,7 +47,10 @@ export default function MyCart(props: MyCartProps) {
     () =>
       setPriceQuantity(
         cartItemData.map(
-          ({ id, price, quantity, discountPercent }: CartItemProps, index) => ({
+          (
+            { id, price, quantity, discountPercent }: CartItemProps,
+            index,
+          ) => ({
             id,
             price,
             quantity,
@@ -122,7 +129,9 @@ export default function MyCart(props: MyCartProps) {
   // );
 
   const discountPrice = Math.ceil(
-    Math.ceil(subTotalPrice * (+(promoCode.info.discountPercent ?? 0) / 100)),
+    Math.ceil(
+      subTotalPrice * (+(promoCode.info.discountPercent ?? 0) / 100),
+    ),
   );
 
   //change item quantity
@@ -140,10 +149,12 @@ export default function MyCart(props: MyCartProps) {
         <CartIcon />
       </RN.View>
       <RN.View style={styles.contentWrapper}>
-        <RN.Text style={styles.contentTitle}>Your Cart is Empty</RN.Text>
+        <RN.Text style={styles.contentTitle}>
+          Your Cart is Empty
+        </RN.Text>
         <RN.Text style={styles.contentSubtitle}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Facilisi arcu
-          ut aliquet et cursus.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Facilisi arcu ut aliquet et cursus.
         </RN.Text>
       </RN.View>
     </RN.View>
@@ -168,7 +179,10 @@ export default function MyCart(props: MyCartProps) {
         onEnterCode={onEnterPromoCode}
         onApplyCode={onApplyPromoCode}
       />
-      <MyCartinvoice subtotal={subTotalPrice} discount={discountPrice} />
+      <MyCartinvoice
+        subtotal={subTotalPrice}
+        discount={discountPrice}
+      />
       <ButtonPrimaryBig
         title={'Check Out'}
         onPress={() => navigation.navigate('CheckOut')}
@@ -178,30 +192,37 @@ export default function MyCart(props: MyCartProps) {
   );
 
   return (
-    <NB.Container style={styles.container}>
-      <RN.StatusBar barStyle={'dark-content'} backgroundColor={ScreenBG} />
-      <NavigationBar
-        leftComponent={<RN.Text style={styles.screenTitle}>My Cart</RN.Text>}
+    <NB.Box style={styles.container}>
+      <RN.StatusBar
+        barStyle={'dark-content'}
+        backgroundColor={ScreenBG}
       />
-      <NB.Content
+      <NavigationBar
+        leftComponent={
+          <RN.Text style={styles.screenTitle}>My Cart</RN.Text>
+        }
+      />
+      <NB.ScrollView
+        px={2.5}
         style={styles.content}
         contentContainerStyle={styles.contentContainerStyle}
         showsVerticalScrollIndicator={false}
       >
-        {cartItemData.length > 0 ? renderCartList() : renderEmptyCart()}
-      </NB.Content>
-    </NB.Container>
+        {cartItemData.length > 0
+          ? renderCartList()
+          : renderEmptyCart()}
+      </NB.ScrollView>
+    </NB.Box>
   );
 }
 
 const styles = RN.StyleSheet.create({
   container: {
-    padding: RFValue(20),
-    paddingBottom: RFValue(0),
+    paddingBottom: RFValue(80),
     backgroundColor: ScreenBG,
     paddingTop: 0,
   },
-  content: { flex: 1 },
+  content: {},
   contentContainerStyle: {
     // alignItems: 'center',
     // justifyContent: 'center',
@@ -219,10 +240,13 @@ const styles = RN.StyleSheet.create({
     flex: 1,
     // marginTop: RFValue(30),
   },
-  headerWrapper: { alignItems: 'flex-start', paddingHorizontal: RFValue(20) },
+  headerWrapper: {
+    alignItems: 'flex-start',
+    paddingHorizontal: RFValue(20),
+  },
   headerTitle: {
     fontSize: RFValue(20),
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     color: SecondaryColor,
   },
   cartIconWrapper: {
@@ -239,13 +263,13 @@ const styles = RN.StyleSheet.create({
   },
   contentTitle: {
     fontSize: RFValue(18),
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     color: '#444444',
     marginBottom: RFValue(20),
   },
   contentSubtitle: {
     fontSize: RFValue(14),
-    fontFamily: 'Avenir-Regular',
+    fontFamily: 'AvenirNextLTPro-Regular',
     color: '#666666',
     textAlign: 'center',
     lineHeight: RFValue(20),
@@ -253,7 +277,7 @@ const styles = RN.StyleSheet.create({
   screenTitle: {
     fontSize: RFValue(20),
     color: SecondaryColor,
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
   },
   checkOutButtonWrapper: { marginVertical: RFValue(10) },
 });

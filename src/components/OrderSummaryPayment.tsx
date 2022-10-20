@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as RN from 'react-native';
 
 import { RFValue } from 'react-native-responsive-fontsize';
-import * as NB from 'native-base';
 
 import { SecondaryColor } from '../modules/colors';
 import { CircleComboIcon } from '../svg/EllipseIcon';
@@ -28,7 +27,7 @@ export default class OrderSummaryPayment extends React.Component<
     this.setState(() => ({ ...this.state, type }));
 
   cardNumberFocus = () =>
-    this.setState((prev) => ({ ...this.state, type: 'card' }));
+    this.setState(prev => ({ ...this.state, type: 'card' }));
 
   public render() {
     return (
@@ -95,7 +94,7 @@ const styles = RN.StyleSheet.create({
   header: {
     fontSize: RFValue(16),
     color: '#999999',
-    fontFamily: 'Avenir-Medium',
+    fontFamily: 'AvenirNextW10-Medium',
     marginBottom: RFValue(10),
   },
   cashWrapper: {
@@ -113,7 +112,7 @@ const styles = RN.StyleSheet.create({
   cash: {
     fontSize: RFValue(16),
     color: SecondaryColor,
-    fontFamily: 'Avenir-Medium',
+    fontFamily: 'AvenirNextW10-Medium',
     flex: 1,
     marginHorizontal: RFValue(10),
   },
@@ -136,7 +135,7 @@ const styles = RN.StyleSheet.create({
   card: {
     fontSize: RFValue(16),
     color: SecondaryColor,
-    fontFamily: 'Avenir-Medium',
+    fontFamily: 'AvenirNextW10-Medium',
     flex: 1,
     marginHorizontal: RFValue(10),
   },
@@ -161,7 +160,7 @@ const styles = RN.StyleSheet.create({
     borderWidth: RFValue(1),
     marginVertical: RFValue(10),
     paddingHorizontal: RFValue(10),
-    fontFamily: 'Avenir-Regular',
+    fontFamily: 'AvenirNextLTPro-Regular',
     fontSize: RFValue(14),
     color: SecondaryColor,
     // flex: 1,

@@ -46,8 +46,9 @@ export default class OrderHistoryItem extends React.Component<
               style={[
                 styles.value,
                 {
-                  color: statusColor[`${this.props.status.toLowerCase()}`],
-                  fontFamily: 'Avenir-DemiBold',
+                  color:
+                    statusColor[`${this.props.status.toLowerCase()}`],
+                  fontFamily: 'AvenirNextW04-Demi',
                 },
               ]}
             >
@@ -56,7 +57,9 @@ export default class OrderHistoryItem extends React.Component<
           </RN.View>
           <RN.View style={styles.orderIdWrapper}>
             <RN.Text style={styles.key}>Order ID: </RN.Text>
-            <RN.Text style={[styles.value, { color: SecondaryColor }]}>
+            <RN.Text
+              style={[styles.value, { color: SecondaryColor }]}
+            >
               {this.props.orderId}
             </RN.Text>
           </RN.View>
@@ -104,5 +107,8 @@ const styles = RN.StyleSheet.create({
     marginTop: RFValue(2.5),
   },
   key: {},
-  value: { fontFamily: 'Avenir-Medium', textTransform: 'capitalize' },
+  value: {
+    fontFamily: 'AvenirNextW10-Medium',
+    textTransform: 'capitalize',
+  },
 });

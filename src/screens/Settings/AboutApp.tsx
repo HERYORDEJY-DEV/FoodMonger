@@ -4,16 +4,20 @@ import * as RN from 'react-native';
 import * as NB from 'native-base';
 import { RFValue } from 'react-native-responsive-fontsize';
 
+import { useNavigation } from '@react-navigation/native';
 import NavigationBar from '../../components/NavigationBar';
+import {
+  PrimaryColor,
+  ScreenBG,
+  SecondaryColor,
+} from '../../modules/colors';
 import { AppIconBig } from '../../svg/AppIcon';
 import {
-  LinkedInIcon,
-  InstagramIcon,
   FacebookIcon,
+  InstagramIcon,
+  LinkedInIcon,
   TwitterIcon,
 } from '../../svg/SocialIcons';
-import { SecondaryColor, PrimaryColor, ScreenBG } from '../../modules/colors';
-import { useNavigation } from '@react-navigation/native';
 
 export interface AboutAppProps {}
 
@@ -23,13 +27,16 @@ export default function AboutApp(props: AboutAppProps) {
   const navigation = useNavigation();
 
   return (
-    <NB.Container style={styles.container}>
-      <RN.StatusBar barStyle={'dark-content'} backgroundColor={ScreenBG} />
+    <NB.Box style={styles.container}>
+      <RN.StatusBar
+        barStyle={'dark-content'}
+        backgroundColor={ScreenBG}
+      />
       <NavigationBar
         title={'About App'}
         leftOnPress={() => navigation.goBack()}
       />
-      <NB.Content
+      <NB.ScrollView
         style={styles.content}
         contentContainerStyle={styles.contentContainerStyle}
       >
@@ -43,7 +50,9 @@ export default function AboutApp(props: AboutAppProps) {
         </RN.Text>
         <RN.View style={styles.contactWrapper}>
           <RN.Text style={styles.contactUs}>Contact Us</RN.Text>
-          <RN.Text style={styles.email}>support@foodmonger.com</RN.Text>
+          <RN.Text style={styles.email}>
+            support@foodmonger.com
+          </RN.Text>
         </RN.View>
 
         <RN.Text style={styles.socialMedia}>Social Media</RN.Text>
@@ -62,54 +71,56 @@ export default function AboutApp(props: AboutAppProps) {
           </RN.Pressable>
         </RN.View>
         <RN.Text style={styles.privacyPolicy}>Privacy Policy</RN.Text>
-      </NB.Content>
-    </NB.Container>
+      </NB.ScrollView>
+    </NB.Box>
   );
 }
 
 const styles = RN.StyleSheet.create({
-  container: { paddingHorizontal: RFValue(20), backgroundColor: ScreenBG },
+  container: {
+    backgroundColor: ScreenBG,
+  },
   content: {},
   contentContainerStyle: { paddingHorizontal: RFValue(60) },
   appIconWrapper: { marginTop: RFValue(30), alignItems: 'center' },
   version: {
     marginVertical: RFValue(20),
     marginTop: RFValue(5),
-    fontFamily: 'Avenir-Regular',
+    fontFamily: 'AvenirNextLTPro-Regular',
     fontSize: RFValue(12),
     color: SecondaryColor,
     textAlign: 'center',
   },
   suggestion: {
     marginVertical: RFValue(20),
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     fontSize: RFValue(14),
     color: SecondaryColor,
     textAlign: 'center',
   },
   contactWrapper: { marginVertical: RFValue(20) },
   contactUs: {
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     fontSize: RFValue(14),
     color: SecondaryColor,
     textAlign: 'center',
   },
   email: {
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     fontSize: RFValue(14),
     color: SecondaryColor,
     textAlign: 'center',
   },
   socialMedia: {
     marginVertical: RFValue(20),
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     fontSize: RFValue(14),
     color: SecondaryColor,
     textAlign: 'center',
   },
   privacyPolicy: {
     marginVertical: RFValue(20),
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     fontSize: RFValue(14),
     color: PrimaryColor,
     textAlign: 'center',

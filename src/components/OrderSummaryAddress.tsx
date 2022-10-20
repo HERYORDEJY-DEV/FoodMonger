@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as RN from 'react-native';
 
-import { RFValue } from 'react-native-responsive-fontsize';
 import * as NB from 'native-base';
+import { RFValue } from 'react-native-responsive-fontsize';
 import { PrimaryColor, SecondaryColor } from '../modules/colors';
 
 export interface OrderSummaryAddressProps {}
@@ -25,15 +25,23 @@ export default class OrderSummaryAddress extends React.Component<
         <RN.Text style={styles.header}>Address</RN.Text>
         <RN.View style={styles.wrapper}>
           <RN.View style={styles.contentWrapper}>
-            <NB.Icon style={styles.mapIcon} name={'map-pin'} type={'Feather'} />
+            <NB.Icon
+              style={styles.mapIcon}
+              name={'map-pin'}
+              type={'Feather'}
+            />
             <RN.View style={styles.addressWrapper}>
-              <RN.Text style={styles.addressType}>Office Address</RN.Text>
+              <RN.Text style={styles.addressType}>
+                Office Address
+              </RN.Text>
               <RN.Text style={styles.fullAddress}>
                 No 15A Unilag Estate Magodo
               </RN.Text>
               <RN.Text style={styles.city}>Lagos</RN.Text>
               <RN.Text style={styles.country}>Nigeria</RN.Text>
-              <RN.Text style={styles.phoneNumber}>+2340806782902</RN.Text>
+              <RN.Text style={styles.phoneNumber}>
+                +2340806782902
+              </RN.Text>
             </RN.View>
             <NB.Icon
               style={styles.arrowIcon}
@@ -52,7 +60,7 @@ const styles = RN.StyleSheet.create({
   header: {
     fontSize: RFValue(16),
     color: '#999999',
-    fontFamily: 'Avenir-Medium',
+    fontFamily: 'AvenirNextW10-Medium',
     marginBottom: RFValue(10),
   },
   wrapper: {
@@ -77,31 +85,31 @@ const styles = RN.StyleSheet.create({
   addressType: {
     fontSize: RFValue(14),
     color: SecondaryColor,
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     marginBottom: RFValue(5),
   },
   fullAddress: {
     fontSize: RFValue(12),
     color: SecondaryColor,
-    fontFamily: 'Avenir-Regular',
+    fontFamily: 'AvenirNextLTPro-Regular',
     marginBottom: RFValue(5),
   },
   city: {
     fontSize: RFValue(12),
     color: SecondaryColor,
-    fontFamily: 'Avenir-Regular',
+    fontFamily: 'AvenirNextLTPro-Regular',
     marginBottom: RFValue(5),
   },
   country: {
     fontSize: RFValue(12),
     color: SecondaryColor,
-    fontFamily: 'Avenir-Regular',
+    fontFamily: 'AvenirNextLTPro-Regular',
     marginBottom: RFValue(5),
   },
   phoneNumber: {
     fontSize: RFValue(12),
     color: SecondaryColor,
-    fontFamily: 'Avenir-Regular',
+    fontFamily: 'AvenirNextLTPro-Regular',
     marginBottom: RFValue(5),
   },
   arrowIcon: {},

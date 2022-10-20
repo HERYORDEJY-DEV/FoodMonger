@@ -1,19 +1,19 @@
 import * as React from 'react';
 import * as RN from 'react-native';
 
+import { Formik } from 'formik';
 import * as NB from 'native-base';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { Formik } from 'formik';
 
+import ButtonPrimaryBig from '../../components/ButtonPrimaryBig';
 import InputBar from '../../components/InputBar';
 import SocialAuthButton from '../../components/SocialAuthButton';
+import TextLink from '../../components/TextLink';
 import { GrayColor, SecondaryColor } from '../../modules/colors';
 import {
   SignUpDataSchema,
   signupInitialValues,
 } from '../../modules/dataSchema';
-import ButtonPrimaryBig from '../../components/ButtonPrimaryBig';
-import TextLink from '../../components/TextLink';
 
 export interface CreateAccountProps {}
 
@@ -22,7 +22,10 @@ export interface CreateAccounttate {}
 export default function CreateAccount(props: CreateAccountProps) {
   return (
     <NB.Container style={styles.container}>
-      <RN.StatusBar barStyle={'dark-content'} backgroundColor={'#fff'} />
+      <RN.StatusBar
+        barStyle={'dark-content'}
+        backgroundColor={'#fff'}
+      />
       <NB.Content
         style={styles.content}
         contentContainerStyle={styles.contentContainerStyle}
@@ -49,7 +52,7 @@ export default function CreateAccount(props: CreateAccountProps) {
         <RN.View style={styles.formWrapper}>
           <Formik
             validationSchema={SignUpDataSchema}
-            onSubmit={(values) => console.log(JSON.stringify(values))}
+            onSubmit={values => console.log(JSON.stringify(values))}
             initialValues={signupInitialValues}
           >
             {({
@@ -117,18 +120,21 @@ export default function CreateAccount(props: CreateAccountProps) {
 }
 
 const styles = RN.StyleSheet.create({
-  container: { paddingHorizontal: RFValue(20), paddingTop: RFValue(50) },
+  container: {
+    paddingHorizontal: RFValue(20),
+    paddingTop: RFValue(50),
+  },
   content: {},
   contentContainerStyle: {},
   headerWrapper: {},
   headerTitle: {
-    fontFamily: 'Avenir-Bold',
+    fontFamily: 'AvenirNextW06-Bold',
     fontSize: RFValue(24),
     color: SecondaryColor,
     paddingBottom: RFValue(10),
   },
   headerSubtitle: {
-    fontFamily: 'Avenir-Regular',
+    fontFamily: 'AvenirNextLTPro-Regular',
     fontSize: RFValue(14),
     color: GrayColor,
   },
@@ -164,7 +170,10 @@ const styles = RN.StyleSheet.create({
     padding: RFValue(10),
   },
   loginWrapper: { marginTop: RFValue(80) },
-  forgotWrapper: { alignItems: 'flex-end', marginVertical: RFValue(20) },
+  forgotWrapper: {
+    alignItems: 'flex-end',
+    marginVertical: RFValue(20),
+  },
   createWrapper: { marginVertical: RFValue(30) },
   forgotText: { fontSize: RFValue(16), color: SecondaryColor },
 });

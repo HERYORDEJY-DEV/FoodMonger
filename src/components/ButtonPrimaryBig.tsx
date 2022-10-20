@@ -49,7 +49,7 @@ const styles = RN.StyleSheet.create({
     justifyContent: 'center',
   },
   title: {
-    fontFamily: 'Avenir-Medium',
+    fontFamily: 'AvenirNextW10-Medium',
     color: '#FFFFFF',
     fontSize: RFValue(14),
   },

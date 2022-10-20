@@ -3,7 +3,6 @@ import * as RN from 'react-native';
 
 import { RFValue } from 'react-native-responsive-fontsize';
 import { PrimaryColor, SecondaryColor } from '../modules/colors';
-import { promoCodeData } from '../api/datas';
 
 export interface PromoCodeBarProps {
   onEnterCode: (e: string) => void;
@@ -27,7 +26,7 @@ export default class PromoCodeBar extends React.Component<
   // entering of code
   onChangeText = (code: string) => {
     this.props.onEnterCode(code);
-    this.setState((prevState) => {
+    this.setState(prevState => {
       return { code };
     });
   };
@@ -42,7 +41,7 @@ export default class PromoCodeBar extends React.Component<
             placeholder={'Promo Code'}
             placeholderTextColor={'#CCCCCC'}
             style={styles.textInput}
-            onChangeText={(text) => this.props.onEnterCode(text)}
+            onChangeText={text => this.props.onEnterCode(text)}
           />
         </RN.View>
         <RN.Pressable
@@ -71,7 +70,11 @@ const styles = RN.StyleSheet.create({
     marginBottom: RFValue(20),
   },
   textInputWrapper: { flex: 1 },
-  textInput: { flex: 1, fontSize: RFValue(14), color: SecondaryColor },
+  textInput: {
+    flex: 1,
+    fontSize: RFValue(14),
+    color: SecondaryColor,
+  },
   applyWrapper: {
     backgroundColor: PrimaryColor + '17',
     alignItems: 'center',
@@ -85,6 +88,6 @@ const styles = RN.StyleSheet.create({
   apply: {
     fontSize: RFValue(14),
     color: PrimaryColor,
-    fontFamily: 'Avenir-Medium',
+    fontFamily: 'AvenirNextW10-Medium',
   },
 });

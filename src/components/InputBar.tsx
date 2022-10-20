@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as RN from 'react-native';
 
-import { RFValue } from 'react-native-responsive-fontsize';
 import * as NB from 'native-base';
+import { RFValue } from 'react-native-responsive-fontsize';
 
 import { PrimaryColor, SecondaryColor } from '../modules/colors';
 
@@ -34,7 +34,10 @@ export default class InputBar extends React.Component<
   }
 
   onShowPassword = () =>
-    this.setState({ ...this.state, showPassword: !this.state.showPassword });
+    this.setState({
+      ...this.state,
+      showPassword: !this.state.showPassword,
+    });
 
   public render() {
     const { touched, errors, placeholder } = this.props;
@@ -47,7 +50,9 @@ export default class InputBar extends React.Component<
             ...this.props.containerStyles,
             borderColor: touched ? PrimaryColor : '#CCCCCC',
             flexDirection:
-              placeholder.toLowerCase() === 'password' ? 'row' : 'column',
+              placeholder.toLowerCase() === 'password'
+                ? 'row'
+                : 'column',
             justifyContent:
               placeholder.toLowerCase() === 'password'
                 ? 'space-between'
@@ -79,7 +84,8 @@ export default class InputBar extends React.Component<
             autoCorrect={false}
           />
         </RN.View>
-        {placeholder.toLowerCase() === ('password' || 'confirm password') && (
+        {placeholder.toLowerCase() ===
+          ('password' || 'confirm password') && (
           <RN.Pressable
             style={styles.iconWrapper}
             onPress={this.onShowPassword}
@@ -106,7 +112,7 @@ const styles = RN.StyleSheet.create({
     padding: RFValue(10),
   },
   placeholder: {
-    fontFamily: 'Avenir-Regular',
+    fontFamily: 'AvenirNextLTPro-Regular',
     color: '#CCCCCC',
     fontSize: RFValue(12),
   },
@@ -114,7 +120,7 @@ const styles = RN.StyleSheet.create({
     padding: 0,
     margin: 0,
     paddingTop: RFValue(5),
-    fontFamily: 'Avenir-Regular',
+    fontFamily: 'AvenirNextLTPro-Regular',
     color: SecondaryColor,
     fontSize: RFValue(14),
     flex: 1,

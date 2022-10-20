@@ -1,18 +1,21 @@
 import * as React from 'react';
 import * as RN from 'react-native';
 
-import { RFValue } from 'react-native-responsive-fontsize';
 import * as NB from 'native-base';
+import { RFValue } from 'react-native-responsive-fontsize';
 import { generalCategoryData } from '../api/datas';
-import ButtonPrimarySmall from './ButtonPrimarySmall';
-import ButtonPrimaryBig from './ButtonPrimaryBig';
 import { SecondaryColor } from '../modules/colors';
+import ButtonPrimaryBig from './ButtonPrimaryBig';
+import ButtonPrimarySmall from './ButtonPrimarySmall';
 
 export interface FilterProps {}
 
 export interface FilterState {}
 
-export default class Filter extends React.Component<FilterProps, FilterState> {
+export default class Filter extends React.Component<
+  FilterProps,
+  FilterState
+> {
   constructor(props: FilterProps) {
     super(props);
 
@@ -24,7 +27,11 @@ export default class Filter extends React.Component<FilterProps, FilterState> {
       <RN.View style={[styles.container]}>
         <RN.View style={[styles.headerWrapper]}>
           <RN.Text style={styles.headerTitle}>Filter</RN.Text>
-          <NB.Icon name={'x'} type={'Feather'} style={styles.headerIcon} />
+          <NB.Icon
+            name={'x'}
+            type={'Feather'}
+            style={styles.headerIcon}
+          />
         </RN.View>
 
         <RN.View style={styles.sectionWrapper}>
@@ -85,7 +92,7 @@ const styles = RN.StyleSheet.create({
   headerTitle: {
     fontSize: RFValue(24),
     color: SecondaryColor,
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
   },
   headerIcon: {},
   sectionWrapper: {
@@ -94,7 +101,7 @@ const styles = RN.StyleSheet.create({
   sectionTitle: {
     fontSize: RFValue(16),
     color: SecondaryColor,
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     marginBottom: RFValue(20),
     textTransform: 'capitalize',
   },
@@ -113,7 +120,7 @@ const styles = RN.StyleSheet.create({
     textAlign: 'center',
     fontSize: RFValue(14),
     color: '#4B4B4B',
-    fontFamily: 'Avenir-Regular',
+    fontFamily: 'AvenirNextLTPro-Regular',
   },
   textInput: {
     flex: 1,
@@ -132,6 +139,6 @@ const styles = RN.StyleSheet.create({
   resetText: {
     fontSize: RFValue(14),
     color: SecondaryColor,
-    fontFamily: 'Avenir-Medium',
+    fontFamily: 'AvenirNextW10-Medium',
   },
 });

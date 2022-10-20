@@ -1,12 +1,14 @@
 import * as React from 'react';
 import * as RN from 'react-native';
 
-import { RFValue } from 'react-native-responsive-fontsize';
 import * as NB from 'native-base';
-import * as RNPaper from 'react-native-paper';
+import { RFValue } from 'react-native-responsive-fontsize';
 
-import { PrimaryColor, ScreenBG, SecondaryColor } from '../modules/colors';
-import { DefinedStringSchema } from 'yup/lib/string';
+import {
+  PrimaryColor,
+  ScreenBG,
+  SecondaryColor,
+} from '../modules/colors';
 import * as I from '../svg/SettingsIcon';
 
 const titleIcons = {
@@ -43,7 +45,10 @@ export default class SettingsLinkItem extends React.Component<
 
   onToggleNotofiication = () =>
     this.setState(() => {
-      return { ...this.state, notification: !this.state.notification };
+      return {
+        ...this.state,
+        notification: !this.state.notification,
+      };
     });
 
   // toggleSwitch = () => setIsEnabled((previousState) => !previousState);
@@ -133,7 +138,7 @@ const styles = RN.StyleSheet.create({
   title: {
     color: SecondaryColor,
     fontSize: RFValue(14),
-    fontFamily: 'Avenir-Regular',
+    fontFamily: 'AvenirNextLTPro-Regular',
     flex: 1,
     textAlign: 'left',
     paddingLeft: RFValue(20),

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import * as RN from 'react-native';
-import DialogueBox from './DialogueBox';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { PrimaryColor, SecondaryColor } from '../modules/colors';
-import ButtonPrimaryBig from './ButtonPrimaryBig';
 import { CheckCircleIcon } from '../svg/EllipseIcon';
+import ButtonPrimaryBig from './ButtonPrimaryBig';
+import DialogueBox from './DialogueBox';
 
 interface Props {
   visible: boolean;
@@ -34,7 +34,8 @@ export default class DeliverySuccessfulModal extends React.PureComponent<
           <CheckCircleIcon />
         </RN.View>
         <RN.Text style={styles.title}>
-          Delivery time has been successfully set and order is now in cart
+          Delivery time has been successfully set and order is now in
+          cart
         </RN.Text>
         <RN.View style={styles.confrimButtonWrapper}>
           <ButtonPrimaryBig
@@ -68,7 +69,7 @@ const styles = RN.StyleSheet.create({
   iconWrapper: { paddingBottom: RFValue(20), alignItems: 'center' },
   title: {
     fontSize: RFValue(14),
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     textAlign: 'center',
     paddingHorizontal: RFValue(20),
 

@@ -1,0 +1,185 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/Avenir-Next-Font.ttf",
+      "sha1": "5431b8a80300b8dd7014f2f1d05c66b3f0d89f38"
+    },
+    {
+      "path": "src/assets/fonts/Avenir-Next-W04-Demi.ttf",
+      "sha1": "6f09bc9b41f572c47b86aa682c3597b48d161760"
+    },
+    {
+      "path": "src/assets/fonts/Avenir-Next-W06-Bold.ttf",
+      "sha1": "e354f35484ec3b40c0aba7a58ccb635c5759071b"
+    },
+    {
+      "path": "src/assets/fonts/Avenir-Next-W10-Medium.ttf",
+      "sha1": "ab07a44ef3314b9b63e517f9db09764055ed9285"
+    },
+    {
+      "path": "src/assets/fonts/BR-Omega-Medium.ttf",
+      "sha1": "138dbc6f683a1dce5a3cd3dd6647bee69cd3ff11"
+    },
+    {
+      "path": "src/assets/fonts/BR-Omega-Regular.ttf",
+      "sha1": "33325f9f83d1ffeaa96d1ce76d60f31b4776ecf7"
+    },
+    {
+      "path": "src/assets/fonts/BR-Omega-SemiBold.ttf",
+      "sha1": "8c07d8a555f4b8fc0a356984ef3b7f4628cb86a1"
+    },
+    {
+      "path": "src/assets/fonts/New folder/Avenir-Bold.ttf",
+      "sha1": "e354f35484ec3b40c0aba7a58ccb635c5759071b"
+    },
+    {
+      "path": "src/assets/fonts/New folder/Avenir-DemiBold.ttf",
+      "sha1": "6f09bc9b41f572c47b86aa682c3597b48d161760"
+    },
+    {
+      "path": "src/assets/fonts/New folder/Avenir-Medium.ttf",
+      "sha1": "ab07a44ef3314b9b63e517f9db09764055ed9285"
+    },
+    {
+      "path": "src/assets/fonts/New folder/Avenir-Regular.ttf",
+      "sha1": "5431b8a80300b8dd7014f2f1d05c66b3f0d89f38"
+    },
+    {
+      "path": "src/assets/fonts/New folder/BROmega-Medium.ttf",
+      "sha1": "138dbc6f683a1dce5a3cd3dd6647bee69cd3ff11"
+    },
+    {
+      "path": "src/assets/fonts/New folder/BROmega-Regular.ttf",
+      "sha1": "33325f9f83d1ffeaa96d1ce76d60f31b4776ecf7"
+    },
+    {
+      "path": "src/assets/fonts/New folder/BROmega-SemiBold.ttf",
+      "sha1": "8c07d8a555f4b8fc0a356984ef3b7f4628cb86a1"
+    },
+    {
+      "path": "src/assets/fonts/New folder/SFPro-Bold.otf",
+      "sha1": "100e7b7fd24facbca4db38e6d4d7e01c73b82818"
+    },
+    {
+      "path": "src/assets/fonts/New folder/SFPro-Regular.otf",
+      "sha1": "e19df199e78d296e5b6491d4832a76756532ed43"
+    },
+    {
+      "path": "src/assets/fonts/New folder/SFPro-Semibold.otf",
+      "sha1": "1919ecaa21bd612d41f8eeef6ccec2f28ad029f6"
+    },
+    {
+      "path": "src/assets/fonts/SF-Pro-Display-Bold.otf",
+      "sha1": "100e7b7fd24facbca4db38e6d4d7e01c73b82818"
+    },
+    {
+      "path": "src/assets/fonts/SF-Pro-Display-Regular.otf",
+      "sha1": "e19df199e78d296e5b6491d4832a76756532ed43"
+    },
+    {
+      "path": "src/assets/fonts/SF-Pro-Display-Semibold.otf",
+      "sha1": "1919ecaa21bd612d41f8eeef6ccec2f28ad029f6"
+    },
+    {
+      "path": "src/assets/images/advertImage.png",
+      "sha1": "cbab26c281c3937d71ddaa1beb6cffcef62fb3dc"
+    },
+    {
+      "path": "src/assets/images/burger.png",
+      "sha1": "b7eaada3c9c2477946b3aa8da51257df035d72e7"
+    },
+    {
+      "path": "src/assets/images/drinks.png",
+      "sha1": "5c31e0e36ca55ad0709cfa78ae26f13204b4a1ad"
+    },
+    {
+      "path": "src/assets/images/fast-foods.png",
+      "sha1": "38a8cfb9e66cfa5b742c8a2afeb69c013439c4f6"
+    },
+    {
+      "path": "src/assets/images/food-info-bg.png",
+      "sha1": "fe3afc7e24ca54d35f2ed617690763f1871c3c63"
+    },
+    {
+      "path": "src/assets/images/jollof-rice-big.png",
+      "sha1": "a2093d7f4dcfc033b6fb50696e84d2506abc164a"
+    },
+    {
+      "path": "src/assets/images/jollof-rice.png",
+      "sha1": "f2a66fbb2336d7327abd364a7ca12710e0cfbd9e"
+    },
+    {
+      "path": "src/assets/images/menu-combos.png",
+      "sha1": "921db14ec0eb742431dc926e1c2e5f908abfcbf4"
+    },
+    {
+      "path": "src/assets/images/menu-italian-dish.png",
+      "sha1": "8e7780b006ba307c055197706354d3672537831b"
+    },
+    {
+      "path": "src/assets/images/menu-sea-food.png",
+      "sha1": "345ab5f375922de33286ac295aabd9f8bf51221e"
+    },
+    {
+      "path": "src/assets/images/menu-soup.png",
+      "sha1": "0f11312c82f562745718b3e0404a86b7271b72fc"
+    },
+    {
+      "path": "src/assets/images/menu-vegetable.png",
+      "sha1": "bd3ded562fc24641c26a4c7a87488366c2800e90"
+    },
+    {
+      "path": "src/assets/images/noodles.png",
+      "sha1": "950f5e5e98f794b8e5b008b559dd45b09c93fbfe"
+    },
+    {
+      "path": "src/assets/images/pizza.png",
+      "sha1": "62d6fe41b6543a444bcf87d0770c6bceafc1681c"
+    },
+    {
+      "path": "src/assets/images/pounded-yam-big.png",
+      "sha1": "d017a288cd6ebd279b6347fa0b46362a9b92ba7c"
+    },
+    {
+      "path": "src/assets/images/pounded-yam-big2.png",
+      "sha1": "a3330893b3e3f15db5ecd0db94b081211708f035"
+    },
+    {
+      "path": "src/assets/images/pounded-yam.png",
+      "sha1": "f0393384e126e0fbd09ef673181f7f0f8fc45614"
+    },
+    {
+      "path": "src/assets/images/swallows.png",
+      "sha1": "6278c6d087d2b0ae58dcbd1662af7a28a96f0d23"
+    },
+    {
+      "path": "src/assets/images/user.png",
+      "sha1": "aa3b52c434d6cbfed6df93f343dada18800da426"
+    },
+    {
+      "path": "src/assets/images/user2.jpg",
+      "sha1": "eded50620cc4fd45e260505304726242d4cfb7d0"
+    },
+    {
+      "path": "src/assets/svgs/Group 322.svg",
+      "sha1": "fd8c1fe7f01742df54783079fd0dcd0d8ceb478c"
+    },
+    {
+      "path": "src/assets/svgs/IntroSlide1.svg",
+      "sha1": "883f3dbfaca918a593453b2e61faf1be1a168996"
+    },
+    {
+      "path": "src/assets/svgs/IntroSlide2.svg",
+      "sha1": "64f24243158b397889ce9d69840f8dfc78a6c12e"
+    },
+    {
+      "path": "src/assets/svgs/IntroSlide3.svg",
+      "sha1": "70093e7220f4d85f6a0751631466a6453800dc61"
+    },
+    {
+      "path": "src/assets/svgs/Rectangle 19.svg",
+      "sha1": "55e743070ace590a5e7a944d1409a9f6e06e4848"
+    }
+  ]
+}

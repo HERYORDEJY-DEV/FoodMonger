@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as RN from 'react-native';
 
-import { RFValue } from 'react-native-responsive-fontsize';
 import * as NB from 'native-base';
+import { RFValue } from 'react-native-responsive-fontsize';
 import { SecondaryColor } from '../modules/colors';
 
 export interface SocialAuthButtonProps {
@@ -28,7 +28,10 @@ export default class SocialAuthButton extends React.Component<
         {...this.props}
         style={[
           styles.container,
-          { backgroundColor: this.props.type === 'facebook' && '#efefef' },
+          {
+            backgroundColor:
+              this.props.type === 'facebook' && '#efefef',
+          },
         ]}
       >
         <NB.Icon
@@ -63,7 +66,7 @@ const styles = RN.StyleSheet.create({
   },
   title: {
     color: SecondaryColor,
-    fontFamily: 'Avenir-Regular',
+    fontFamily: 'AvenirNextLTPro-Regular',
     fontSize: RFValue(14),
     paddingLeft: RFValue(5),
     textTransform: 'capitalize',

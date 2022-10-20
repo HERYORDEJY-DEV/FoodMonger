@@ -1,28 +1,30 @@
 import * as React from 'react';
-import * as RN from 'react-native';
+import { FlatList, StatusBar, StyleSheet, Text } from 'react-native';
 
-import * as NB from 'native-base';
+import SearchItemHorizontal from '@components/SearchItemHorizontal';
+import { useNavigation } from '@react-navigation/native';
+import { Box, Pressable, ScrollView, View } from 'native-base';
 import { RFValue } from 'react-native-responsive-fontsize';
-import HomeHeaderBar from '../../components/HomeHeaderBar';
-import HomeSearchBar from '../../components/HomeSearchBar';
-import AdvertItem from '../../components/AdvertItem';
-import Swiper from '../../components/Swiper';
 import {
   advertData,
   specialCombosData,
   topCategoryData,
 } from '../../api/datas';
-import { StringSchema } from 'yup';
-import { _screenWidth } from '../../modules/dimension';
-import { ScreenBG, SecondaryColor } from '../../modules/colors';
-import TopCategoryItem from '../../components/TopCategoryItem';
+import AdvertItem from '../../components/AdvertItem';
+import HomeHeaderBar from '../../components/HomeHeaderBar';
+import HomeSearchBar from '../../components/HomeSearchBar';
 import SpecialComboItem from '../../components/SpecialComboItem';
+import Swiper from '../../components/Swiper';
+import TopCategoryItem from '../../components/TopCategoryItem';
+import { ScreenBG, SecondaryColor } from '../../modules/colors';
 
 export interface HomeProps {}
 
 export interface HomeState {}
 
 export default function Home(props: HomeProps) {
+  const navigation = useNavigation();
+
   const renderAdverts = () => (
     <Swiper
       contentContainerStyle={styles.renderAdvertsContainer}
@@ -30,55 +32,61 @@ export default function Home(props: HomeProps) {
       horizontal={true}
     >
       {advertData.map((advert: { id: string }, index) => (
-        <RN.Pressable style={styles.advertItem} key={advert.id}>
+        <Pressable mr={2.5} key={advert.id} shadow={3}>
           <AdvertItem
             imageSource={require('../../assets/images/advertImage.png')}
           />
-        </RN.Pressable>
+        </Pressable>
       ))}
     </Swiper>
   );
 
   const renderTopCategory = () => (
-    <RN.View style={styles.topCategoryWrapper}>
-      <RN.View style={styles.topCategoryHeaderWrapper}>
-        <RN.Text style={styles.topCategoryTitle}>Top Categories</RN.Text>
-        <RN.Pressable>
-          <RN.Text style={styles.topCategorySubtitle}>See All</RN.Text>
-        </RN.Pressable>
-      </RN.View>
-      <RN.ScrollView
+    <View style={styles.topCategoryWrapper}>
+      <View style={styles.topCategoryHeaderWrapper}>
+        <Text style={styles.topCategoryTitle}>Top Categories</Text>
+        <Pressable>
+          <Text style={styles.topCategorySubtitle}>See All</Text>
+        </Pressable>
+      </View>
+      <ScrollView
         style={styles.renderTopCategory}
         contentContainerStyle={styles.renderTopCategoryContainer}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
       >
         {topCategoryData.map(
-          (cat: { id: string; title: string; imageSource: any }, index) => (
-            <RN.Pressable style={styles.topCategoryItem} key={cat.id}>
+          (
+            cat: { id: string; title: string; imageSource: any },
+            index,
+          ) => (
+            <Pressable style={styles.topCategoryItem} key={cat.id}>
               <TopCategoryItem
                 title={cat.title}
                 imageSource={cat.imageSource}
               />
-            </RN.Pressable>
+            </Pressable>
           ),
         )}
-      </RN.ScrollView>
-    </RN.View>
+      </ScrollView>
+    </View>
   );
 
   // TODO layout of 2 columns yet to be done
   const renderSpecialCombos = () => (
-    <RN.View style={styles.combosWrapper}>
-      <RN.View style={styles.topCategoryHeaderWrapper}>
-        <RN.Text style={styles.topCategoryTitle}>Special Combos</RN.Text>
-        <RN.Pressable>
-          <RN.Text style={styles.topCategorySubtitle}>See All</RN.Text>
-        </RN.Pressable>
-      </RN.View>
-      <RN.ScrollView
+    <View style={styles.combosWrapper}>
+      <View style={styles.topCategoryHeaderWrapper}>
+        <Text style={styles.topCategoryTitle}>Special Combos</Text>
+        <Pressable>
+          <Text style={styles.topCategorySubtitle}>See All</Text>
+        </Pressable>
+      </View>
+      <ScrollView
         style={styles.renderTopCategory}
-        contentContainerStyle={styles.renderTopCategoryContainer}
+        contentContainerStyle={[
+          styles.renderTopCategoryContainer,
+          { marginBottom: 0 },
+        ]}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
       >
@@ -93,81 +101,97 @@ export default function Home(props: HomeProps) {
             },
             index,
           ) => (
-            <RN.Pressable style={styles.topCategoryItem} key={cat.id}>
+            <Pressable style={styles.topCategoryItem} key={cat.id}>
               <SpecialComboItem
                 title={cat.title}
                 imageSource={cat.imageSource}
                 price={cat.price}
                 potion={cat.potion}
               />
-            </RN.Pressable>
+            </Pressable>
           ),
         )}
-      </RN.ScrollView>
-    </RN.View>
+      </ScrollView>
+    </View>
   );
 
   const renderHeader = () => {
     return (
-      <RN.View>
+      <View>
         {renderAdverts()}
         {renderTopCategory()}
         {renderSpecialCombos()}
-      </RN.View>
+        <View m={2.5}>
+          <Text style={styles.topCategoryTitle}>Trending Combos</Text>
+        </View>
+      </View>
     );
   };
 
   return (
-    <NB.Container style={styles.container}>
-      <RN.StatusBar barStyle={'dark-content'} backgroundColor={ScreenBG} />
-      <RN.View style={styles.topWrapper}>
+    <Box style={styles.container} bg={'red.200'}>
+      <StatusBar
+        barStyle={'dark-content'}
+        backgroundColor={ScreenBG}
+      />
+      <View style={styles.topWrapper} mx={2.5}>
         <HomeHeaderBar />
         <HomeSearchBar />
-      </RN.View>
+      </View>
 
-      <RN.FlatList
+      <FlatList
+        showsVerticalScrollIndicator={false}
         ListHeaderComponent={renderHeader()}
-        data={advertData}
-        renderItem={() => {}}
+        data={specialCombosData}
+        contentContainerStyle={{}}
+        renderItem={({ item, index }) => (
+          <SearchItemHorizontal
+            {...item}
+            containerStyles={{ marginHorizontal: RFValue(10) }}
+            onPress={() => navigation.navigate('FoodInfo')}
+          />
+        )}
       />
-    </NB.Container>
+    </Box>
   );
 }
 
-const styles = RN.StyleSheet.create({
-  container: { paddingTop: RFValue(20), backgroundColor: ScreenBG },
+const styles = StyleSheet.create({
+  container: { backgroundColor: ScreenBG },
   content: {},
   contentContainerStyle: {},
-  topWrapper: { paddingHorizontal: RFValue(20), paddingTop: RFValue(0) },
+  topWrapper: {
+    paddingTop: RFValue(0),
+  },
   renderAdvertsContainer: {
-    paddingHorizontal: RFValue(20),
+    paddingHorizontal: RFValue(10),
     // paddingRight: RFValue(150),
     marginBottom: RFValue(20),
     // flex: 1,
   },
   advertItem: { marginRight: RFValue(10) },
   renderTopCategoryContainer: {
-    paddingHorizontal: RFValue(20),
-    marginBottom: RFValue(40),
+    paddingHorizontal: RFValue(10),
+    marginBottom: RFValue(20),
   },
   topCategoryItem: { marginRight: RFValue(10) },
-  topCategoryWrapper: { marginTop: RFValue(40) },
-  combosWrapper: { marginBottom: RFValue(40) },
+  topCategoryWrapper: { marginTop: RFValue(30) },
+  combosWrapper: { marginBottom: RFValue(20) },
   topCategoryHeaderWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: RFValue(20),
+    paddingHorizontal: RFValue(10),
   },
   topCategoryTitle: {
     fontSize: RFValue(18),
     color: SecondaryColor,
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
   },
   topCategorySubtitle: {
     fontSize: RFValue(14),
     color: SecondaryColor,
-    fontFamily: 'Avenir-Medium',
+    fontFamily: 'AvenirNextW10-Medium',
   },
   renderTopCategory: { marginTop: RFValue(20) },
 });

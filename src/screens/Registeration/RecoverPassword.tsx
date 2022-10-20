@@ -1,18 +1,18 @@
 import * as React from 'react';
 import * as RN from 'react-native';
 
+import { Formik } from 'formik';
 import * as NB from 'native-base';
 import { RFValue } from 'react-native-responsive-fontsize';
-import { Formik } from 'formik';
 
+import ButtonPrimaryBig from '../../components/ButtonPrimaryBig';
+import InputBar from '../../components/InputBar';
 import NavigationBar from '../../components/NavigationBar';
 import { GrayColor, SecondaryColor } from '../../modules/colors';
-import ButtonPrimaryBig from '../../components/ButtonPrimaryBig';
 import {
-  signinInitialValues,
   SignInDataSchema,
+  signinInitialValues,
 } from '../../modules/dataSchema';
-import InputBar from '../../components/InputBar';
 
 export interface RecoverPasswordProps {}
 
@@ -26,7 +26,9 @@ export default function RecoverPassword(props: RecoverPasswordProps) {
         barStyle={'dark-content'}
         backgroundColor={'transparent'}
       />
-      <NavigationBar leftComponent={<NB.Icon name={'x'} type={'Feather'} />} />
+      <NavigationBar
+        leftComponent={<NB.Icon name={'x'} type={'Feather'} />}
+      />
 
       <RN.View style={styles.headerWrapper}>
         <RN.Text style={styles.headerTitle}>Recover Password</RN.Text>
@@ -38,7 +40,7 @@ export default function RecoverPassword(props: RecoverPasswordProps) {
       <RN.View style={styles.formWrapper}>
         <Formik
           initialValues={signinInitialValues}
-          onSubmit={(values) => console.log(JSON.stringify(values))}
+          onSubmit={values => console.log(JSON.stringify(values))}
           validationSchema={SignInDataSchema}
         >
           {({
@@ -90,13 +92,13 @@ const styles = RN.StyleSheet.create({
 
   headerWrapper: { marginTop: RFValue(10) },
   headerTitle: {
-    fontFamily: 'Avenir-Bold',
+    fontFamily: 'AvenirNextW06-Bold',
     fontSize: RFValue(24),
     color: SecondaryColor,
     paddingBottom: RFValue(10),
   },
   headerSubtitle: {
-    fontFamily: 'Avenir-Regular',
+    fontFamily: 'AvenirNextLTPro-Regular',
     fontSize: RFValue(14),
     color: GrayColor,
   },

@@ -1,6 +1,6 @@
+import { Image, View } from 'native-base';
 import * as React from 'react';
-import * as RN from 'react-native';
-
+import { StyleSheet } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
 
 export interface AdvertItemProps {
@@ -21,14 +21,18 @@ export default class AdvertItem extends React.Component<
 
   public render() {
     return (
-      <RN.View style={[styles.container]}>
-        <RN.Image source={this.props.imageSource} style={styles.image} />
-      </RN.View>
+      <View style={[styles.container]}>
+        <Image
+          alt={'advert'}
+          source={this.props.imageSource}
+          style={styles.image}
+        />
+      </View>
     );
   }
 }
 
-const styles = RN.StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     overflow: 'hidden',
     width: RFValue(309 - 8),

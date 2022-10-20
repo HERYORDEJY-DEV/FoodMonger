@@ -3,11 +3,15 @@ import * as RN from 'react-native';
 
 import * as NB from 'native-base';
 import { RFValue } from 'react-native-responsive-fontsize';
-import HomeSearchBar from '../../components/HomeSearchBar';
-import { PrimaryColor, ScreenBG, SecondaryColor } from '../../modules/colors';
-import { GridViewIcon, ListViewIcon } from '../../svg/ViewIcons';
 import { specialCombosData } from '../../api/datas';
+import HomeSearchBar from '../../components/HomeSearchBar';
 import SearchItemHorizontal from '../../components/SearchItemHorizontal';
+import {
+  PrimaryColor,
+  ScreenBG,
+  SecondaryColor,
+} from '../../modules/colors';
+import { GridViewIcon, ListViewIcon } from '../../svg/ViewIcons';
 import SpecialComboItem from './../../components/SpecialComboItem';
 
 export interface SearchProps {}
@@ -20,7 +24,10 @@ export default function Search(props: SearchProps) {
     ButtonDefaultText: 'CHANGE TO GRIDVIEW',
   });
 
-  const changeGridValueFunction = (GridColumnsValue, ButtonDefaultText) => {
+  const changeGridValueFunction = (
+    GridColumnsValue: boolean,
+    ButtonDefaultText: string,
+  ) => {
     // if (state.GridColumnsValue === true) {
     //   setState({
     //     GridColumnsValue: false,
@@ -32,16 +39,22 @@ export default function Search(props: SearchProps) {
     //     ButtonDefaultText: 'CHANGE TO GRIDVIEW',
     //   });
     // }
-    setState(() => ({ ...state, GridColumnsValue, ButtonDefaultText }));
+    setState(() => ({
+      ...state,
+      GridColumnsValue,
+      ButtonDefaultText,
+    }));
   };
 
   const renderViewbar = () => (
-    <RN.View style={styles.viewBarWrapper}>
+    <NB.View style={styles.viewBarWrapper}>
       <RN.Text style={styles.resultCount}>6 Results Found</RN.Text>
-      <RN.View style={styles.viewButtonsWrapper}>
+      <NB.View style={styles.viewButtonsWrapper}>
         <RN.Pressable
           style={styles.viewButton}
-          onPress={() => changeGridValueFunction(true, 'CHANGE TO GRIDVIEW')}
+          onPress={() =>
+            changeGridValueFunction(true, 'CHANGE TO GRIDVIEW')
+          }
         >
           <GridViewIcon
             stroke={state.GridColumnsValue ? PrimaryColor : '#353534'}
@@ -49,24 +62,28 @@ export default function Search(props: SearchProps) {
         </RN.Pressable>
         <RN.Pressable
           style={[styles.viewButton, { paddingRight: 0 }]}
-          onPress={() => changeGridValueFunction(false, 'CHANGE TO LISTVIEW')}
+          onPress={() =>
+            changeGridValueFunction(false, 'CHANGE TO LISTVIEW')
+          }
         >
           <ListViewIcon
-            stroke={!state.GridColumnsValue ? PrimaryColor : '#353534'}
+            stroke={
+              !state.GridColumnsValue ? PrimaryColor : '#353534'
+            }
           />
         </RN.Pressable>
-      </RN.View>
-    </RN.View>
+      </NB.View>
+    </NB.View>
   );
 
   const renderListHeader = () => (
-    <RN.View style={{ marginVertical: RFValue(20) }}>
+    <NB.View mt={3} mx={2.5}>
       <HomeSearchBar />
       {renderViewbar()}
-    </RN.View>
+    </NB.View>
   );
 
-  const renderItem = (desc) =>
+  const renderItem = desc =>
     !state.GridColumnsValue ? (
       <SearchItemHorizontal
         {...desc}
@@ -87,33 +104,43 @@ export default function Search(props: SearchProps) {
     );
 
   return (
-    <NB.Container style={styles.container}>
-      <RN.StatusBar barStyle={'dark-content'} backgroundColor={ScreenBG} />
+    <NB.Box safeAreaY={true} style={styles.container}>
+      <RN.StatusBar
+        barStyle={'dark-content'}
+        backgroundColor={ScreenBG}
+      />
+      {renderListHeader()}
       <RN.FlatList
+        horizontal={false}
         style={styles.content}
         numColumns={state.GridColumnsValue ? 2 : 1}
         key={state.GridColumnsValue ? 'TWO COLUMN' : 'ONE COLUMN'}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={[
           styles.contentContainerStyle,
-          { alignItems: state.GridColumnsValue ? 'center' : null },
+          // {
+          //   alignItems: state.GridColumnsValue ? 'center' : null,
+          //   justifyContent: 'space-between',
+          // },
         ]}
+        columnWrapperStyle={
+          state.GridColumnsValue
+            ? {
+                justifyContent: 'space-between',
+                width: '100%',
+              }
+            : null
+        }
         data={specialCombosData}
-        ListHeaderComponent={renderListHeader()}
-        ListHeaderComponentStyle={{
-          backgroundColor: ScreenBG,
-          width: '100%',
-        }}
-        stickyHeaderIndices={[0]}
         renderItem={({ item, index }) => renderItem(item)}
       />
-    </NB.Container>
+    </NB.Box>
   );
 }
 
 const styles = RN.StyleSheet.create({
   container: {},
-  content: { paddingHorizontal: RFValue(10) },
+  content: {},
   contentContainerStyle: {
     // paddingVertical: RFValue(20),
     paddingHorizontal: RFValue(10),
@@ -128,7 +155,7 @@ const styles = RN.StyleSheet.create({
   resultCount: {
     fontSize: RFValue(14),
     color: SecondaryColor,
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
   },
   viewButtonsWrapper: {
     flexDirection: 'row',

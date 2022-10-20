@@ -5,14 +5,12 @@ import * as NB from 'native-base';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { SvgXml } from 'react-native-svg';
 
-import { AppIntroSlide1 } from '../../svg/AppIntroSlide1';
-import { AppIntroSlide2, IntroSlideXml2 } from '../../svg/AppIntroSlide2';
 import { PrimaryColor, SecondaryColor } from '../../modules/colors';
 
+import { useState } from 'react';
+import { appIntroSlideData } from '../../api/datas';
 import ButtonPrimaryBig from '../../components/ButtonPrimaryBig';
 import { _screenWidth } from '../../modules/dimension';
-import { appIntroSlideData } from '../../api/datas';
-import { useState } from 'react';
 
 export interface AppIntroSliderProps {}
 
@@ -21,9 +19,11 @@ export interface AppIntroSliderState {}
 export default function AppIntroSlider(props: AppIntroSliderProps) {
   const [scrollIndex, setScrollIndex] = useState(0);
 
-  const onScrollIntro = (event) =>
+  const onScrollIntro = event =>
     setScrollIndex(
-      parseInt(String(event.nativeEvent.contentOffset.x / _screenWidth)),
+      parseInt(
+        String(event.nativeEvent.contentOffset.x / _screenWidth),
+      ),
     );
 
   console.log(scrollIndex);
@@ -41,7 +41,7 @@ export default function AppIntroSlider(props: AppIntroSliderProps) {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         snapToInterval={_screenWidth + 2}
-        onScroll={(event) => onScrollIntro(event)}
+        onScroll={event => onScrollIntro(event)}
         pagingEnabled={true}
         scrollEventThrottle={5}
       >
@@ -64,14 +64,20 @@ export default function AppIntroSlider(props: AppIntroSliderProps) {
             <NB.Icon
               style={[
                 styles.pagerIcon,
-                { color: index === scrollIndex ? PrimaryColor : '#E3E3E3' },
+                {
+                  color:
+                    index === scrollIndex ? PrimaryColor : '#E3E3E3',
+                },
               ]}
               name={'circle'}
               type={'FontAwesome'}
             />
           ))}
         </RN.View>
-        <ButtonPrimaryBig title={'Next'} containerStyles={{ flex: 0.4 }} />
+        <ButtonPrimaryBig
+          title={'Next'}
+          containerStyles={{ flex: 0.4 }}
+        />
       </RN.View>
     </NB.Container>
   );
@@ -95,7 +101,7 @@ const styles = RN.StyleSheet.create({
   title: {
     fontSize: RFValue(18),
     color: SecondaryColor,
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     textAlign: 'center',
     marginBottom: RFValue(20),
     marginTop: RFValue(40),
@@ -103,7 +109,7 @@ const styles = RN.StyleSheet.create({
   subtitle: {
     fontSize: RFValue(14),
     color: '#666666',
-    fontFamily: 'Avenir-Regular',
+    fontFamily: 'AvenirNextLTPro-Regular',
     textAlign: 'center',
     lineHeight: RFValue(20),
   },

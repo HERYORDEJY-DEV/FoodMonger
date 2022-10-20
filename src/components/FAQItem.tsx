@@ -1,9 +1,7 @@
 import * as React from 'react';
 import * as RN from 'react-native';
 
-import { List } from 'react-native-paper';
 import { RFValue } from 'react-native-responsive-fontsize';
-import Collapsible from 'react-native-collapsible';
 
 import { PrimaryColor } from '../modules/colors';
 import AccordionView from './Accordion';
@@ -52,9 +50,11 @@ const FAQItem = () => {
       <RN.View style={[styles.wrapper]}>
         <AccordionView
           containerStyles={[styles.container]}
-          headerComponent={(titleColor) => (
+          headerComponent={titleColor => (
             <RN.View style={styles.questionWrapper}>
-              <RN.Text style={[styles.question, { color: titleColor }]}>
+              <RN.Text
+                style={[styles.question, { color: titleColor }]}
+              >
                 How to order on Food Monger
               </RN.Text>
             </RN.View>
@@ -62,10 +62,10 @@ const FAQItem = () => {
           contentComponent={
             <RN.View style={styles.answerWrapper}>
               <RN.Text style={styles.answer}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pharetra sem quis integer nec elit, pretium sit. Blandit gravida
-                nulla nibh eget mattis nibh id. Adipiscing massa sed at vitae
-                tortor.
+                Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit. Pharetra sem quis integer nec elit, pretium sit.
+                Blandit gravida nulla nibh eget mattis nibh id.
+                Adipiscing massa sed at vitae tortor.
               </RN.Text>
             </RN.View>
           }
@@ -74,9 +74,11 @@ const FAQItem = () => {
       <RN.View style={[styles.wrapper]}>
         <AccordionView
           containerStyles={[styles.container]}
-          headerComponent={(titleColor) => (
+          headerComponent={titleColor => (
             <RN.View style={styles.questionWrapper}>
-              <RN.Text style={[styles.question, { color: titleColor }]}>
+              <RN.Text
+                style={[styles.question, { color: titleColor }]}
+              >
                 How to order on Food Monger
               </RN.Text>
             </RN.View>
@@ -84,10 +86,10 @@ const FAQItem = () => {
           contentComponent={
             <RN.View style={styles.answerWrapper}>
               <RN.Text style={styles.answer}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Pharetra sem quis integer nec elit, pretium sit. Blandit gravida
-                nulla nibh eget mattis nibh id. Adipiscing massa sed at vitae
-                tortor.
+                Lorem ipsum dolor sit amet, consectetur adipiscing
+                elit. Pharetra sem quis integer nec elit, pretium sit.
+                Blandit gravida nulla nibh eget mattis nibh id.
+                Adipiscing massa sed at vitae tortor.
               </RN.Text>
             </RN.View>
           }
@@ -109,13 +111,13 @@ const styles = RN.StyleSheet.create({
   questionWrapper: { marginVertical: RFValue(10) },
   question: {
     color: PrimaryColor,
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     fontSize: RFValue(14),
   },
   answerWrapper: { marginVertical: RFValue(10) },
   answer: {
     color: '#999999',
-    fontFamily: 'Avenir-Regular',
+    fontFamily: 'AvenirNextLTPro-Regular',
     fontSize: RFValue(12),
     lineHeight: RFValue(20),
     letterSpacing: RFValue(1),

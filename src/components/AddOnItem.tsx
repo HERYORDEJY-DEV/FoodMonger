@@ -1,13 +1,18 @@
 import * as React from 'react';
 import * as RN from 'react-native';
 
-import { RFValue } from 'react-native-responsive-fontsize';
 import * as NB from 'native-base';
-import { SecondaryColor, PrimaryColor } from '../modules/colors';
-import { CheckBoxActiveIcon, CheckBoxInactiveIcon } from '../svg/CheckBoxIcon';
+import { RFValue } from 'react-native-responsive-fontsize';
+import { PrimaryColor, SecondaryColor } from '../modules/colors';
+import {
+  CheckBoxActiveIcon,
+  CheckBoxInactiveIcon,
+} from '../svg/CheckBoxIcon';
+import {
+  ChevronDownCircle,
+  ChevronUpCircle,
+} from '../svg/SettingsIcon';
 import AccordionView from './Accordion';
-import { ChevronDownCircle, ChevronUpCircle } from '../svg/SettingsIcon';
-import { listOfAddOn } from '../api/datas';
 
 export interface AddOnItemProps {
   data: {};
@@ -29,96 +34,113 @@ export default class AddOnItem extends React.PureComponent<
   //   listOfAddOn.map((e) => this.setState({ ...this.state, e }));
   // }
 
-  plusQuantity = (addOn) => {
+  plusQuantity = addOn => {
     this.setState({
       ...this.state,
-      [addOn]: this.state[`${addOn}`] ? this.state[`${addOn}`] + 1 : 0 + 1,
+      [addOn]: this.state[`${addOn}`]
+        ? this.state[`${addOn}`] + 1
+        : 0 + 1,
     });
   };
 
-  minusQuantity = (addOn) =>
+  minusQuantity = addOn =>
     this.setState({
       ...this.state,
-      [addOn]: this.state[`${addOn}`] ? this.state[`${addOn}`] - 1 : 0 - 1,
+      [addOn]: this.state[`${addOn}`]
+        ? this.state[`${addOn}`] - 1
+        : 0 - 1,
     });
 
   public render() {
     return (
       <>
         {Object.keys(this.props.data).map((d, index) => (
-          <RN.View key={d + index.toString()} style={styles.addOnSubwrapper}>
+          <RN.View
+            key={d + index.toString()}
+            style={styles.addOnSubwrapper}
+          >
             <AccordionView
               containerStyles={[styles.container]}
               arrowDownComponent={<ChevronDownCircle />}
               arrowUpComponent={<ChevronUpCircle />}
-              headerComponent={(titleColor) => (
-                <RN.Text style={[styles.addOnSubtitle, { color: titleColor }]}>
+              headerComponent={titleColor => (
+                <RN.Text
+                  style={[
+                    styles.addOnSubtitle,
+                    { color: titleColor },
+                  ]}
+                >
                   {d}
                 </RN.Text>
               )}
-              contentComponent={Object.values(this.props.data[`${d}`]).map(
-                (opt: { id: string; title: string }, index) => (
-                  <RN.View key={opt.id} style={styles.addOnOptionWrapper}>
-                    <RN.Pressable style={[styles.addOnOptionTitleWrapper]}>
-                      {this.state[`${opt.title.toLowerCase()}`] > 0 ? (
-                        <CheckBoxActiveIcon />
-                      ) : (
-                        <CheckBoxInactiveIcon />
-                      )}
-                      <RN.Text style={styles.addOnOptionTitle}>
-                        {opt.title}
-                      </RN.Text>
-                    </RN.Pressable>
+              contentComponent={Object.values(
+                this.props.data[`${d}`],
+              ).map((opt: { id: string; title: string }, index) => (
+                <RN.View
+                  key={opt.id}
+                  style={styles.addOnOptionWrapper}
+                >
+                  <RN.Pressable
+                    style={[styles.addOnOptionTitleWrapper]}
+                  >
+                    {this.state[`${opt.title.toLowerCase()}`] > 0 ? (
+                      <CheckBoxActiveIcon />
+                    ) : (
+                      <CheckBoxInactiveIcon />
+                    )}
+                    <RN.Text style={styles.addOnOptionTitle}>
+                      {opt.title}
+                    </RN.Text>
+                  </RN.Pressable>
 
-                    <RN.View style={styles.quantityButtonWrapper}>
-                      <RN.Pressable
-                        disabled={
-                          this.state[`${opt.title.toLowerCase()}`] > 0
-                            ? false
-                            : true
-                        }
-                        onPress={() =>
-                          this.minusQuantity(opt.title.toLowerCase())
-                        }
-                        style={[
-                          styles.quantityButton,
-                          {
-                            backgroundColor: '#F0F0F0',
-                          },
-                        ]}
-                      >
-                        <NB.Icon
-                          style={styles.minusIcon}
-                          name={'minus'}
-                          type={'Feather'}
-                        />
-                      </RN.Pressable>
-                      <RN.View style={styles.quantityNumberWrapper}>
-                        <RN.Text style={styles.quantityNumber}>
-                          {this.state[`${opt.title}`] ?? 0}
-                        </RN.Text>
-                      </RN.View>
-                      <RN.Pressable
-                        onPress={() =>
-                          this.plusQuantity(opt.title.toLowerCase())
-                        }
-                        style={[
-                          styles.quantityButton,
-                          {
-                            backgroundColor: PrimaryColor,
-                          },
-                        ]}
-                      >
-                        <NB.Icon
-                          style={styles.minusIcon}
-                          name={'plus'}
-                          type={'Feather'}
-                        />
-                      </RN.Pressable>
+                  <RN.View style={styles.quantityButtonWrapper}>
+                    <RN.Pressable
+                      disabled={
+                        this.state[`${opt.title.toLowerCase()}`] > 0
+                          ? false
+                          : true
+                      }
+                      onPress={() =>
+                        this.minusQuantity(opt.title.toLowerCase())
+                      }
+                      style={[
+                        styles.quantityButton,
+                        {
+                          backgroundColor: '#F0F0F0',
+                        },
+                      ]}
+                    >
+                      <NB.Icon
+                        style={styles.minusIcon}
+                        name={'minus'}
+                        type={'Feather'}
+                      />
+                    </RN.Pressable>
+                    <RN.View style={styles.quantityNumberWrapper}>
+                      <RN.Text style={styles.quantityNumber}>
+                        {this.state[`${opt.title}`] ?? 0}
+                      </RN.Text>
                     </RN.View>
+                    <RN.Pressable
+                      onPress={() =>
+                        this.plusQuantity(opt.title.toLowerCase())
+                      }
+                      style={[
+                        styles.quantityButton,
+                        {
+                          backgroundColor: PrimaryColor,
+                        },
+                      ]}
+                    >
+                      <NB.Icon
+                        style={styles.minusIcon}
+                        name={'plus'}
+                        type={'Feather'}
+                      />
+                    </RN.Pressable>
                   </RN.View>
-                ),
-              )}
+                </RN.View>
+              ))}
             />
           </RN.View>
         ))}
@@ -144,7 +166,7 @@ const styles = RN.StyleSheet.create({
   },
   minusIcon: {
     fontSize: RFValue(12),
-    fontFamily: 'Avenir-Bold',
+    fontFamily: 'AvenirNextW06-Bold',
     color: SecondaryColor,
   },
   quantityNumberWrapper: {
@@ -155,7 +177,7 @@ const styles = RN.StyleSheet.create({
   quantityNumber: {
     fontSize: RFValue(18),
     color: SecondaryColor,
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     // paddingHorizontal: RFValue(10),
   },
   addOnOptionWrapper: {
@@ -176,7 +198,7 @@ const styles = RN.StyleSheet.create({
   addOnOptionTitle: {
     fontSize: RFValue(14),
     color: SecondaryColor,
-    fontFamily: 'Avenir-Regular',
+    fontFamily: 'AvenirNextLTPro-Regular',
     marginLeft: RFValue(10),
     textTransform: 'capitalize',
   },
@@ -184,11 +206,14 @@ const styles = RN.StyleSheet.create({
   addOnSubtitle: {
     fontSize: RFValue(14),
     color: SecondaryColor,
-    fontFamily: 'Avenir-DemiBold',
+    fontFamily: 'AvenirNextW04-Demi',
     marginBottom: RFValue(0),
     textTransform: 'capitalize',
     paddingVertical: RFValue(10),
   },
 
-  addOnSubwrapper: { justifyContent: 'center', marginBottom: RFValue(20) },
+  addOnSubwrapper: {
+    justifyContent: 'center',
+    marginBottom: RFValue(20),
+  },
 });

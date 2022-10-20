@@ -1,12 +1,12 @@
 import * as React from 'react';
 import * as RN from 'react-native';
 
+import { useNavigation } from '@react-navigation/native';
 import * as NB from 'native-base';
 import { RFValue } from 'react-native-responsive-fontsize';
-import NavigationBar from '../../components/NavigationBar';
 import FAQItem from '../../components/FAQItem';
+import NavigationBar from '../../components/NavigationBar';
 import { ScreenBG } from '../../modules/colors';
-import { useNavigation } from '@react-navigation/native';
 
 export interface FAQProps {}
 
@@ -16,21 +16,30 @@ export default function FAQ(props: FAQProps) {
   const navigation = useNavigation();
 
   return (
-    <NB.Container style={styles.container}>
-      <RN.StatusBar barStyle={'dark-content'} backgroundColor={ScreenBG} />
-      <NavigationBar title={'FAQ'} leftOnPress={() => navigation.goBack()} />
-      <NB.Content
+    <NB.Box style={styles.container}>
+      <RN.StatusBar
+        barStyle={'dark-content'}
+        backgroundColor={ScreenBG}
+      />
+      <NavigationBar
+        title={'FAQ'}
+        leftOnPress={() => navigation.goBack()}
+      />
+      <NB.ScrollView
+        px={2.5}
         style={styles.content}
         contentContainerStyle={styles.contentContainerStyle}
       >
         <FAQItem />
-      </NB.Content>
-    </NB.Container>
+      </NB.ScrollView>
+    </NB.Box>
   );
 }
 
 const styles = RN.StyleSheet.create({
-  container: { paddingHorizontal: RFValue(20), backgroundColor: ScreenBG },
+  container: {
+    backgroundColor: ScreenBG,
+  },
   content: { paddingTop: RFValue(20) },
   contentContainerStyle: {},
 });
